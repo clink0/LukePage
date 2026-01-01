@@ -1,3 +1,23 @@
+/* app/globals.css */
+
+/* --- ADD THESE LINES TO THE TOP --- */
+/* Hide default cursor globally so CustomCursor is the only one visible */
+html,
+body,
+a,
+button,
+input,
+textarea {
+  cursor: none !important;
+}
+
+/* Ensure canvas (3D elements) also hide the cursor */
+canvas {
+  cursor: none !important;
+}
+/* ---------------------------------- */
+
+/* KEEP YOUR EXISTING SETUP BELOW */
 @import "tailwindcss";
 
 :root {
