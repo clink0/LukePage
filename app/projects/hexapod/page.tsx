@@ -8,7 +8,6 @@ import { Heading, Text, Mono } from '@/components/ui/Typography';
 // Replace these paths with your actual files once you have them.
 // For video: drop your .mp4 into /public/media/ and update the path.
 // For photo: drop your image into /public/media/ and update the path.
-const SIMULATION_VIDEO_SRC = '/media/cpg-sim.mov';
 const ROBOT_PHOTO_SRC      = '/media/hexapod-robot.jpg';
 const ROBOT_PHOTO_ALT      = 'markwtech 3D-printed hexapod robot with 624Z dual-bearing joints on Martian regolith test surface';
 // ─────────────────────────────────────────────────────────────
@@ -94,35 +93,6 @@ export default function HexapodPage() {
             <Mono className="text-neutral-600 block sticky top-32">02__MEDIA</Mono>
           </div>
           <div className="space-y-6">
-
-            {/* Simulation Video */}
-            <div>
-              <Mono color="amber" className="mb-3 block text-xs">// CPG SIMULATION — Python / Matplotlib</Mono>
-              <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-amber-900/40 bg-neutral-950 group">
-                <video
-                  src={SIMULATION_VIDEO_SRC}
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls
-                />
-                {/* Fallback overlay if video not found */}
-                <noscript>
-                  <div className="absolute inset-0 flex items-center justify-center bg-neutral-950">
-                    <Mono className="text-neutral-600">// video not available</Mono>
-                  </div>
-                </noscript>
-                {/* Amber scanline overlay for aesthetics */}
-                <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(245,158,11,0.015)_2px,rgba(245,158,11,0.015)_4px)] rounded-lg" />
-                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="pointer-events-none absolute bottom-3 left-4">
-                  <Mono className="text-amber-500/60 text-xs">hexapod_cpg.py — Kuramoto oscillators × 6</Mono>
-                </div>
-              </div>
-            </div>
-
             {/* Robot Photo */}
             <div>
               <Mono color="amber" className="mb-3 block text-xs">// HARDWARE — markwtech frame // MG996R × 18 // PLA + TPU</Mono>
