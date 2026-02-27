@@ -41,9 +41,6 @@ export default function ProjectsPage() {
           {/* Using Text but adding font-mono to match the "Terminal" aesthetic of this specific page */}
           <Text className="text-xl max-w-2xl font-mono text-neutral-400">
             Select a file to view project details. 
-            <Text as="span" className="block mt-2 text-green-500/50 text-sm">
-              Some subtext here.
-            </Text>
           </Text>
         </div>
 

@@ -45,7 +45,15 @@ const projects: Project[] = [
     description: 'Custom PCB design and interrupt-driven firmware for an industrial-grade universal infrared remote.',
     tags: ['PCB Design', 'Embedded C', 'AVR'],
     link: '/projects/ir-remote'
-  }
+  },
+  {
+    id: '05',
+    codeName: 'LASER',
+    realName: 'LiDAR Orbital Debris Characterization',
+    description: 'Autonomous tracking system using Intel RealSense LiDAR to characterize the tumbling motion and dimensions of space debris.',
+    tags: ['Python', 'Open3D', 'LiDAR', 'Computer Vision'],
+    link: '/projects/laser'
+  },
 ];
 
 export default function SpotlightGrid() {

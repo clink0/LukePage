@@ -7,19 +7,34 @@ export default function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   
+  // Start by assuming it's a touch device to prevent a flash of the cursor on mobile during Next.js hydration
+  const [isTouchDevice, setIsTouchDevice] = useState(true); 
+  
   // Use a ref to track state inside the event listener without re-binding it
   const isHoveringRef = useRef(false);
 
   useEffect(() => {
+    // 1. HARDWARE DETECTION: Check if the device has a physical mouse
+    const hasMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    setIsTouchDevice(!hasMouse);
+
+    // If it's a phone/tablet, abort setup completely. Save battery and memory.
+    if (!hasMouse) return;
+
     const updatePosition = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
+      
+      // Use functional state update to avoid dependency loop
+      setIsVisible((prev) => {
+        if (!prev) return true;
+        return prev;
+      });
 
       // 1. Check for standard HTML clickable elements
       const target = e.target as HTMLElement;
       const isClickableDOM = !!target.closest('a, button, input, textarea, [role="button"]');
       
-      // 2. Check for our special 3D hover flag (we will add this to FluidGlass)
+      // 2. Check for our special 3D hover flag
       const isClickable3D = document.body.getAttribute('data-hover-3d') === 'true';
 
       const shouldHover = isClickableDOM || isClickable3D;
@@ -43,9 +58,10 @@ export default function CustomCursor() {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [isVisible]);
+  }, []); // <-- Removed isVisible from dependencies to prevent infinite re-binding of listeners
 
-  if (!isVisible) return null;
+  // 2. ABORT RENDER: If touch device or mouse is off-screen, render nothing
+  if (isTouchDevice || !isVisible) return null;
 
   return (
     <div
