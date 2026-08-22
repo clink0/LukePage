@@ -28,7 +28,7 @@ export default function Home() {
             Luke Bray
             </h1>
             <p className="text-xl text-green-500 font-mono tracking-widest uppercase text-center">
-            Computer Engineering Student
+            Electrical Engineering Student
             </p>
         </div>
       </div>
