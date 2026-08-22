@@ -9,11 +9,7 @@ import { Heading, Text, Mono } from '@/components/ui/Typography';
 // review deck (Fort Lewis College, Dec 2024) — real photos of the
 // hardware, real diagrams, and real result plots, not stock art.
 const CONCEPT_OPS_SRC     = '/media/laser/concept-of-operations.png';
-const RASPBERRY_PI_SRC    = '/media/laser/raspberry-pi.png';
-const REALSENSE_SRC       = '/media/laser/realsense-l515.png';
-const TEST_STAND_SRC      = '/media/laser/test-stand.png';
 const TEST_SETUP_SRC      = '/media/laser/test-setup.png';
-const HARDWARE_DIAGRAM_SRC = '/media/laser/hardware-diagram.png';
 const SOFTWARE_DIAGRAM_SRC = '/media/laser/software-diagram.png';
 const UNPROCESSED_PLY_SRC  = '/media/laser/unprocessed-ply.png';
 const PCD_UNFILTERED_SRC   = '/media/laser/pcd-unfiltered.png';
@@ -186,14 +182,7 @@ export default function LaserPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-              <MediaFrame src={RASPBERRY_PI_SRC} alt="Raspberry Pi 5 with M.2 HAT+ and NVMe SSD" caption="Fig. 3 — Raspberry Pi 5 w/ M.2 HAT + SSD" />
-              <MediaFrame src={REALSENSE_SRC} alt="Intel RealSense L515 LiDAR camera on a tabletop tripod" caption="Fig. 11 — Intel RealSense L515" />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <MediaFrame src={TEST_STAND_SRC} alt="Custom rotating test stand holding the extruded triangular test object" caption="Fig. 10 — Rotating Test Stand" />
-              <MediaFrame src={TEST_SETUP_SRC} alt="Full scaled-down recording and testing setup with LiDAR, Raspberry Pi, and test stand" caption="Fig. 9 — Recording / Testing Setup" />
-            </div>
+            <MediaFrame src={TEST_SETUP_SRC} alt="Labeled recording and testing setup: LiDAR Camera on tripod, Raspberry Pi, and rotating Test Stand with triangular test object" caption="Fig. 9 — Recording / Testing Setup" />
           </div>
         </section>
 
@@ -208,10 +197,6 @@ export default function LaserPage() {
             <Text className="text-neutral-400 mb-6">
               Raw LiDAR data is noisy. The pipeline runs <Mono variant="code" color="red">rs-data-capture</Mono> to record a 15-second <Mono variant="code" color="red">.bag</Mono> (~424 frames), then a custom <Mono variant="code" color="red">ConversionScript.sh</Mono> converts it to per-frame <Mono variant="code" color="red">.ply</Mono> + <Mono variant="code" color="red">metadata.txt</Mono> using the RealSense library.
             </Text>
-
-            <div className="mb-6">
-              <MediaFrame src={HARDWARE_DIAGRAM_SRC} alt="Hardware pipeline diagram: rs-data-capture to .bag to rs-convert to .ply and metadata.txt" caption="Fig. 4 — Hardware / Capture Pipeline" />
-            </div>
 
             <Text className="text-neutral-400 mb-4">
               Each frame is then filtered with <strong className="text-white">Open3D</strong>: a dynamic Z-axis filter, statistical outlier removal, radius outlier removal, and Euclidean clustering isolate the object from background noise.
