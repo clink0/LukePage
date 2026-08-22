@@ -4,6 +4,32 @@ import Link from 'next/link';
 import MatrixBackground from '@/components/MatrixBackground';
 import { Heading, Text, Mono } from '@/components/ui/Typography';
 
+// ─── MEDIA CONFIG ────────────────────────────────────────────
+const PROTOTYPE_TEST_SRC = '/media/ir-remote/prototype-test.jpg';
+const PCB_LAYOUT_SRC     = '/media/ir-remote/pcb-layout.png';
+const SCHEMATIC_SRC      = '/media/ir-remote/schematic.png';
+const DEMO_VIDEO_ID      = 'SBVHGycFA4A';
+// ─────────────────────────────────────────────────────────────
+
+function MediaFrame({
+  src,
+  alt,
+  caption,
+}: {
+  src: string;
+  alt: string;
+  caption: string;
+}) {
+  return (
+    <div className="rounded-lg overflow-hidden border border-green-900/40 bg-white p-2 mb-3">
+      <img src={src} alt={alt} className="w-full h-auto" />
+      {caption && (
+        <Mono className="text-green-400 text-xs block text-center mt-2">{caption}</Mono>
+      )}
+    </div>
+  );
+}
+
 export default function IRRemotePage() {
   return (
     <main className="min-h-screen w-full bg-black text-white relative overflow-x-hidden selection:bg-green-500/30">
@@ -38,7 +64,7 @@ export default function IRRemotePage() {
           
           <Heading variant="h1" className="text-5xl md:text-7xl mb-6">
             ATmega2560 Universal <br/>
-            <Text as="span" className="text-neutral-500 font-bold">IR Control System</Text>
+            <span className="text-neutral-300 font-bold tracking-normal">IR Control System</span>
           </Heading>
           
           <Text className="text-xl md:text-2xl text-green-400/90 font-mono leading-relaxed max-w-2xl">
@@ -46,18 +72,41 @@ export default function IRRemotePage() {
           </Text>
         </header>
 
+        {/* The Prototype Section */}
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+          <div className="text-right hidden md:block">
+            <Mono className="text-neutral-600 block sticky top-32">01__PROTOTYPE</Mono>
+          </div>
+          <div>
+            <Heading variant="h3" className="mb-4">Proof of Concept</Heading>
+            <Text className="text-neutral-400 mb-6">
+              Before committing to a custom PCB, I validated the concept on the bench while waiting on v2 parts to arrive. The rig reused the <strong className="text-white">v1 keypad</strong>, a &quot;Skyboard&quot; microcontroller board (a DIY ATmega-based Arduino), and a separate Arduino wired up as the IR receiver to confirm signals were actually being decoded correctly.
+            </Text>
+
+            <MediaFrame
+              src={PROTOTYPE_TEST_SRC}
+              alt="Breadboard prototype: v1 keypad wired to a Skyboard ATmega microcontroller, with a second Arduino-based receiver board for testing"
+              caption="v1 keypad + Skyboard MC (transmit) and Arduino receiver (decode)"
+            />
+
+            <Text className="text-neutral-400">
+              Once the interrupt-driven scanning and IR protocol were confirmed working here, the design moved to a dedicated PCB for v2.
+            </Text>
+          </div>
+        </section>
+
         {/* The Hardware Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">01__HARDWARE</Mono>
+            <Mono className="text-neutral-600 block sticky top-32">02__HARDWARE</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">Custom PCB Design</Heading>
             <Text className="text-neutral-400 mb-6">
               The core of the SkyRemote is a custom-designed Printed Circuit Board (PCB) built around the <strong className="text-white">ATmega2560</strong>. Unlike hobbyist kits, this was designed for daily reliability.
             </Text>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 <div className="bg-neutral-900/50 border border-green-900/30 p-4 rounded">
                     <Mono color="green" className="mb-2 block">POWER SYSTEM</Mono>
                     <Text variant="small" className="text-neutral-400">
@@ -71,13 +120,26 @@ export default function IRRemotePage() {
                     </Text>
                 </div>
             </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start">
+              <MediaFrame
+                src={PCB_LAYOUT_SRC}
+                alt="PCB layout of the custom IR remote board, showing the 4x3 keypad pads, ATmega TQFP footprint, and charging/boost circuitry"
+                caption="PCB Layout — v2"
+              />
+              <MediaFrame
+                src={SCHEMATIC_SRC}
+                alt="Full schematic of the IR remote: ATmega2560, TP4056 battery charger, MT3608 boost converter, keypad matrix, and IR LED driver"
+                caption="Full Schematic — v2"
+              />
+            </div>
           </div>
         </section>
 
         {/* The Firmware Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">02__FIRMWARE</Mono>
+            <Mono className="text-neutral-600 block sticky top-32">03__FIRMWARE</Mono>
           </div>
           
           <div className="min-w-0">
@@ -123,7 +185,7 @@ export default function IRRemotePage() {
         {/* The Protocol Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">03__PROTOCOL</Mono>
+            <Mono className="text-neutral-600 block sticky top-32">04__PROTOCOL</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-6">Samsung IR Integration</Heading>
@@ -143,6 +205,36 @@ export default function IRRemotePage() {
                     <Mono color="green" className="w-24">CMD: 0x07</Mono>
                     <Text variant="small" className="text-neutral-300">Function: Volume Up (+Repeat)</Text>
                 </div>
+            </div>
+          </div>
+        </section>
+
+        {/* The Demo Section */}
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+          <div className="text-right hidden md:block">
+            <Mono className="text-neutral-600 block sticky top-32">05__FINAL BUILD</Mono>
+          </div>
+          <div>
+            <Heading variant="h3" className="mb-4">v2 in Daily Use</Heading>
+            <Text className="text-neutral-400 mb-6">
+              The finished v2 board, keypad, and enclosure in action, replacing the original plastic remote.
+            </Text>
+
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-green-900/40 bg-neutral-950 mb-6">
+              <iframe
+                className="w-full h-full"
+                src={`https://www.youtube.com/embed/${DEMO_VIDEO_ID}`}
+                title="SkyRemote v2 — final product demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+            <div className="bg-neutral-900/50 border border-amber-900/40 p-4 rounded">
+              <Mono color="amber" className="mb-2 block">KNOWN ISSUE // BATTERY CIRCUIT</Mono>
+              <Text variant="small" className="text-neutral-400">
+                The onboard Li-Ion charging/boost circuit doesn&apos;t power the board correctly — root cause still unconfirmed. The remote works fine on external power, so for now v2 runs with a soldered jumper bypassing the battery circuit entirely. Debugging the charger path is next on the list.
+              </Text>
             </div>
           </div>
         </section>
