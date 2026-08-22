@@ -53,7 +53,7 @@ export default function EducationPage() {
         <Link href="/" className="text-xl font-bold tracking-tighter text-green-500 hover:text-white transition-colors">
           Luke Bray
         </Link>
-        <Link href="/" className="text-sm text-green-500 uppercase tracking-widest hover:underline hover:text-white transition-colors">
+        <Link href="/" className="text-xl text-green-500 uppercase tracking-widest hover:underline hover:text-white transition-colors">
           // Return to Root
         </Link>
       </nav>
@@ -268,7 +268,7 @@ function CourseItem({ code, title, desc }: { code: string, title: string, desc: 
         <Text as="span" className="font-bold text-green-300 group-hover:text-white transition-colors">
           {title}
         </Text>
-        <Mono variant="default" color="green" className="text-xs">
+        <Mono variant="default" color="green" className="text-xl">
           {code}
         </Mono>
       </div>

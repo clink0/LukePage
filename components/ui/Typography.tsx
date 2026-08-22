@@ -39,8 +39,8 @@ export function Text({ variant = "default", className, children, as: Component =
   const styles = {
     default: "text-xl text-neutral-300 leading-relaxed",
     lead: "text-2xl md:text-3xl text-neutral-400 font-light leading-relaxed",
-    muted: "text-lg text-neutral-400",
-    small: "text-base text-neutral-400",
+    muted: "text-xl text-neutral-400",
+    small: "text-xl text-neutral-400",
   };
 
   return (
@@ -71,9 +71,9 @@ export function Mono({ variant = "default", color = "neutral", className, childr
   const textColor = colors[color].split(" ")[0]; 
 
   const styles = {
-    default: cn("font-mono text-sm tracking-widest uppercase", textColor),
-    code: cn("font-mono text-sm bg-black/50 p-1 rounded border border-neutral-800", textColor),
-    tag: cn("font-mono text-xs px-2 py-1 rounded border", colors[color]),
+    default: cn("font-mono text-xl tracking-widest uppercase", textColor),
+    code: cn("font-mono text-xl bg-black/50 p-1 rounded border border-neutral-800", textColor),
+    tag: cn("font-mono text-xl px-2 py-1 rounded border", colors[color]),
   };
 
   return (
