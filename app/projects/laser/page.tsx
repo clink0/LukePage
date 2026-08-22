@@ -49,12 +49,12 @@ function MediaFrame({
         <div className="w-16 h-16 border-2 border-rose-900/40 rounded-full flex items-center justify-center">
           <Mono className="text-rose-900/60 text-xl">📷</Mono>
         </div>
-        <Mono className="text-neutral-700 text-sm">// image pending</Mono>
+        <Mono className="text-neutral-700 text-xl">// image pending</Mono>
       </div>
       <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(244,63,94,0.015)_2px,rgba(244,63,94,0.015)_4px)] rounded-lg" />
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black/70 to-transparent" />
       <div className="pointer-events-none absolute bottom-3 left-4">
-        <Mono className="text-rose-300 text-sm">{caption}</Mono>
+        <Mono className="text-rose-300 text-xl">{caption}</Mono>
       </div>
     </div>
   );
@@ -91,9 +91,9 @@ export default function LaserPage() {
               REF-05 // LASER
             </Mono>
             <span className="text-neutral-700">|</span>
-            <Mono className="text-neutral-400 text-sm">FORT LEWIS COLLEGE // CAPSTONE, DEC 2024</Mono>
+            <Mono className="text-neutral-400 text-xl">FORT LEWIS COLLEGE // CAPSTONE, DEC 2024</Mono>
             <span className="text-neutral-700">|</span>
-            <Mono className="text-neutral-400 text-sm">CUSTOMER: CLEAN SPACE LLC</Mono>
+            <Mono className="text-neutral-400 text-xl">CUSTOMER: CLEAN SPACE LLC</Mono>
           </div>
 
           <Heading variant="h1" className="text-5xl md:text-7xl mb-6">
@@ -115,14 +115,14 @@ export default function LaserPage() {
             ].map(({ val, label }) => (
               <div key={label} className="border border-rose-900/30 bg-neutral-950/60 p-4 rounded">
                 <div className="text-2xl font-bold text-rose-300 font-mono">{val}</div>
-                <Mono className="text-neutral-400 text-sm mt-1">{label}</Mono>
+                <Mono className="text-neutral-400 text-xl mt-1">{label}</Mono>
               </div>
             ))}
           </div>
         </header>
 
         {/* 01 — The Problem */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">01__ORBIT</Mono>
           </div>
@@ -136,7 +136,7 @@ export default function LaserPage() {
             </Text>
 
             <div className="bg-neutral-900/50 border border-rose-900/30 p-5 rounded-lg mb-6">
-              <Mono color="red" className="mb-3 block text-sm">// CONCEPT OF OPERATIONS</Mono>
+              <Mono color="red" className="mb-3 block text-xl">// CONCEPT OF OPERATIONS</Mono>
               <div className="max-w-xs mx-auto rounded-lg overflow-hidden border border-rose-900/40 bg-white">
                 <img
                   src={CONCEPT_OPS_SRC}
@@ -144,7 +144,7 @@ export default function LaserPage() {
                   className="w-full h-auto"
                 />
               </div>
-              <Mono className="text-rose-300 text-sm block text-center mt-2">Fig. 2 — Concept of Operations</Mono>
+              <Mono className="text-rose-300 text-xl block text-center mt-2">Fig. 2 — Concept of Operations</Mono>
             </div>
 
             <Text className="text-neutral-400">
@@ -154,7 +154,7 @@ export default function LaserPage() {
         </section>
 
         {/* 02 — The Hardware */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">02__SENSOR</Mono>
           </div>
@@ -190,7 +190,7 @@ export default function LaserPage() {
         </section>
 
         {/* 03 — The Algorithms */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">03__ALGORITHM</Mono>
           </div>
@@ -212,7 +212,7 @@ export default function LaserPage() {
 
             {/* Code Block: RANSAC Plane Fitting */}
             <div className="bg-neutral-900 rounded-lg p-4 overflow-x-auto border border-neutral-800 mb-6 shadow-xl">
-              <pre className="font-mono text-sm text-neutral-300 leading-relaxed">
+              <pre className="font-mono text-xl text-neutral-300 leading-relaxed">
 {`def get_plane_normal(pcd):
     # Segment the largest plane using RANSAC
     plane_model, inliers = pcd.segment_plane(
@@ -234,7 +234,7 @@ export default function LaserPage() {
               For <strong className="text-white">dimensions</strong>, an oriented bounding box is fit to the filtered cloud, then scaled using a linear regression against known test distances:
             </Text>
 
-            <div className="bg-neutral-950 border border-neutral-800 p-4 rounded-lg mb-6 font-mono text-sm text-center">
+            <div className="bg-neutral-950 border border-neutral-800 p-4 rounded-lg mb-6 font-mono text-xl text-center">
               <Mono color="red">Scaling Factor = &minus;0.0287 &times; Depth + 0.8376</Mono>
             </div>
 
@@ -249,7 +249,7 @@ export default function LaserPage() {
         </section>
 
         {/* 04 — Testing */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">04__TESTING</Mono>
           </div>
@@ -271,12 +271,12 @@ export default function LaserPage() {
                 allowFullScreen
               />
             </div>
-            <Mono className="text-rose-300 text-sm">// PCD animation — cleaned triangular test object spinning at 5.22 RPM</Mono>
+            <Mono className="text-rose-300 text-xl">// PCD animation — cleaned triangular test object spinning at 5.22 RPM</Mono>
           </div>
         </section>
 
         {/* 05 — Results */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">05__RESULTS</Mono>
           </div>
@@ -287,14 +287,14 @@ export default function LaserPage() {
             </Text>
 
             <div className="mb-6 overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
+              <table className="w-full text-xl border-collapse">
                 <thead>
                   <tr className="border-b border-rose-900/30">
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-sm">METRIC</Mono></th>
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-sm">TRUTH</Mono></th>
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-sm">AVG DEVIATION</Mono></th>
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-sm">% ERROR</Mono></th>
-                    <th className="text-left py-2"><Mono className="text-neutral-400 text-sm">REQ. (≤5%)</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-xl">METRIC</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-xl">TRUTH</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-xl">AVG DEVIATION</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-xl">% ERROR</Mono></th>
+                    <th className="text-left py-2"><Mono className="text-neutral-400 text-xl">REQ. (≤5%)</Mono></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-900">
@@ -309,10 +309,10 @@ export default function LaserPage() {
                       <td className="py-3 pr-6"><Mono className="text-neutral-300">{truth}</Mono></td>
                       <td className="py-3 pr-6"><Mono className="text-neutral-300">{dev}</Mono></td>
                       <td className="py-3 pr-6">
-                        <span className={`font-mono text-sm uppercase tracking-widest ${met ? 'text-green-400' : 'text-red-400'}`}>{err}</span>
+                        <span className={`font-mono text-xl uppercase tracking-widest ${met ? 'text-green-400' : 'text-red-400'}`}>{err}</span>
                       </td>
                       <td className="py-3">
-                        <span className={`text-sm font-mono px-2 py-0.5 rounded border ${met ? 'border-green-900/50 text-green-400 bg-green-900/20' : 'border-red-900/50 text-red-400 bg-red-900/20'}`}>
+                        <span className={`text-xl font-mono px-2 py-0.5 rounded border ${met ? 'border-green-900/50 text-green-400 bg-green-900/20' : 'border-red-900/50 text-red-400 bg-red-900/20'}`}>
                           {met ? 'MET' : 'MISSED'}
                         </span>
                       </td>
@@ -338,7 +338,7 @@ export default function LaserPage() {
         </section>
 
         {/* 06 — Reflection & Future Work */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">06__REFLECTION</Mono>
           </div>
@@ -347,7 +347,7 @@ export default function LaserPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
               <div>
-                <Mono color="red" className="mb-3 block text-sm">// HARDWARE CHALLENGES</Mono>
+                <Mono color="red" className="mb-3 block text-xl">// HARDWARE CHALLENGES</Mono>
                 <ul className="space-y-2">
                   {[
                     '3D-printing tolerances on the test object',
@@ -358,13 +358,13 @@ export default function LaserPage() {
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <span className="w-1 h-1 rounded-full bg-rose-500 mt-2 flex-shrink-0" />
-                      <Text className="text-neutral-400 text-sm">{item}</Text>
+                      <Text className="text-neutral-400 text-xl">{item}</Text>
                     </li>
                   ))}
                 </ul>
               </div>
               <div>
-                <Mono color="red" className="mb-3 block text-sm">// SOFTWARE CHALLENGES</Mono>
+                <Mono color="red" className="mb-3 block text-xl">// SOFTWARE CHALLENGES</Mono>
                 <ul className="space-y-2">
                   {[
                     'RealSense library quirks and edge cases',
@@ -375,7 +375,7 @@ export default function LaserPage() {
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <span className="w-1 h-1 rounded-full bg-rose-500 mt-2 flex-shrink-0" />
-                      <Text className="text-neutral-400 text-sm">{item}</Text>
+                      <Text className="text-neutral-400 text-xl">{item}</Text>
                     </li>
                   ))}
                 </ul>
@@ -403,7 +403,7 @@ export default function LaserPage() {
               ].map(({ title, body }) => (
                 <div key={title} className="border border-neutral-800 rounded-lg p-4">
                   <Text className="text-white font-semibold mb-1">{title}</Text>
-                  <Text className="text-neutral-400 text-sm">{body}</Text>
+                  <Text className="text-neutral-400 text-xl">{body}</Text>
                 </div>
               ))}
             </div>
@@ -419,31 +419,31 @@ export default function LaserPage() {
           <Mono className="text-neutral-400 mb-4 block">Credits</Mono>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
             <div>
-              <Mono color="red" className="text-sm block mb-1">FACULTY ADVISOR</Mono>
-              <Text className="text-neutral-300 text-sm">Dr. Yu Takahashi</Text>
+              <Mono color="red" className="text-xl block mb-1">FACULTY ADVISOR</Mono>
+              <Text className="text-neutral-300 text-xl">Dr. Yu Takahashi</Text>
             </div>
             <div>
-              <Mono color="red" className="text-sm block mb-1">CUSTOMER</Mono>
-              <Text className="text-neutral-300 text-sm">Clean Space LLC</Text>
+              <Mono color="red" className="text-xl block mb-1">CUSTOMER</Mono>
+              <Text className="text-neutral-300 text-xl">Clean Space LLC</Text>
             </div>
             <div>
-              <Mono color="red" className="text-sm block mb-1">PROJECT MANAGER</Mono>
-              <Text className="text-neutral-300 text-sm">Luke Bray</Text>
+              <Mono color="red" className="text-xl block mb-1">PROJECT MANAGER</Mono>
+              <Text className="text-neutral-300 text-xl">Luke Bray</Text>
             </div>
             <div>
-              <Mono color="red" className="text-sm block mb-1">HEAD OF SOFTWARE ENGINEERING</Mono>
-              <Text className="text-neutral-300 text-sm">Alex Olson</Text>
+              <Mono color="red" className="text-xl block mb-1">HEAD OF SOFTWARE ENGINEERING</Mono>
+              <Text className="text-neutral-300 text-xl">Alex Olson</Text>
             </div>
             <div>
-              <Mono color="red" className="text-sm block mb-1">HEAD OF HARDWARE ENGINEERING</Mono>
-              <Text className="text-neutral-300 text-sm">Gavin Wakefield</Text>
+              <Mono color="red" className="text-xl block mb-1">HEAD OF HARDWARE ENGINEERING</Mono>
+              <Text className="text-neutral-300 text-xl">Gavin Wakefield</Text>
             </div>
             <div>
-              <Mono color="red" className="text-sm block mb-1">CO-HEAD OF HARDWARE ENGINEERING</Mono>
-              <Text className="text-neutral-300 text-sm">Martin Coba</Text>
+              <Mono color="red" className="text-xl block mb-1">CO-HEAD OF HARDWARE ENGINEERING</Mono>
+              <Text className="text-neutral-300 text-xl">Martin Coba</Text>
             </div>
           </div>
-          <Text className="text-neutral-400 text-sm mt-4">
+          <Text className="text-neutral-400 text-xl mt-4">
             L.A.S.E.R. — LiDAR And Sensor Engineering Researchers — Fort Lewis College Capstone, December 2024.
           </Text>
         </section>

@@ -24,7 +24,7 @@ function MediaFrame({
     <div className="rounded-lg overflow-hidden border border-green-900/40 bg-white p-2 mb-3">
       <img src={src} alt={alt} className="w-full h-auto" />
       {caption && (
-        <Mono className="text-green-400 text-sm block text-center mt-2">{caption}</Mono>
+        <Mono className="text-green-400 text-xl block text-center mt-2">{caption}</Mono>
       )}
     </div>
   );
@@ -73,7 +73,7 @@ export default function IRRemotePage() {
         </header>
 
         {/* The Prototype Section */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">01__PROTOTYPE</Mono>
           </div>
@@ -96,7 +96,7 @@ export default function IRRemotePage() {
         </section>
 
         {/* The Hardware Section */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">02__HARDWARE</Mono>
           </div>
@@ -137,7 +137,7 @@ export default function IRRemotePage() {
         </section>
 
         {/* The Firmware Section */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">03__FIRMWARE</Mono>
           </div>
@@ -145,12 +145,12 @@ export default function IRRemotePage() {
           <div className="min-w-0">
             <Heading variant="h3" className="mb-4">Interrupt-Driven Architecture</Heading>
             <Text className="text-neutral-400 mb-6">
-              To ensure zero latency, I bypassed the standard Arduino <Mono variant="code" className="text-sm">loop()</Mono> polling for the keypad. Instead, I configured <strong className="text-white">Timer 1</strong> to trigger an Interrupt Service Routine (ISR) at exactly 50Hz.
+              To ensure zero latency, I bypassed the standard Arduino <Mono variant="code" className="text-xl">loop()</Mono> polling for the keypad. Instead, I configured <strong className="text-white">Timer 1</strong> to trigger an Interrupt Service Routine (ISR) at exactly 50Hz.
             </Text>
 
             {/* Code Block */}
             <div className="bg-neutral-900 rounded-lg p-4 overflow-x-auto border border-neutral-800 mb-6 shadow-xl">
-              <pre className="font-mono text-sm text-neutral-300 leading-relaxed">
+              <pre className="font-mono text-xl text-neutral-300 leading-relaxed">
 {`ISR(TIMER1_COMPA_vect) {
   // Scan Columns
   for (int c = 0; c < NUM_COLS; c++) {
@@ -183,26 +183,26 @@ export default function IRRemotePage() {
         </section>
 
         {/* The Protocol Section */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">04__PROTOCOL</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-6">Samsung IR Integration</Heading>
             <Text className="text-neutral-400 mb-6">
-                The system utilizes the <Mono variant="code" className="text-sm">IRremote.hpp</Mono> library to modulate the 38kHz carrier wave required by Samsung televisions.
+                The system utilizes the <Mono variant="code" className="text-xl">IRremote.hpp</Mono> library to modulate the 38kHz carrier wave required by Samsung televisions.
             </Text>
             <div className="mt-6 flex flex-col gap-2">
                 <div className="flex items-center gap-4 border-b border-neutral-800 pb-2">
-                    <Mono color="green" className="w-24">ADDR: 0x7</Mono>
+                    <Mono color="green" className="w-36">ADDR: 0x7</Mono>
                     <Text variant="small" className="text-neutral-300">Target Device Address</Text>
                 </div>
                 <div className="flex items-center gap-4 border-b border-neutral-800 pb-2">
-                    <Mono color="green" className="w-24">CMD: 0x02</Mono>
+                    <Mono color="green" className="w-36">CMD: 0x02</Mono>
                     <Text variant="small" className="text-neutral-300">Function: Power Toggle</Text>
                 </div>
                 <div className="flex items-center gap-4 border-b border-neutral-800 pb-2">
-                    <Mono color="green" className="w-24">CMD: 0x07</Mono>
+                    <Mono color="green" className="w-36">CMD: 0x07</Mono>
                     <Text variant="small" className="text-neutral-300">Function: Volume Up (+Repeat)</Text>
                 </div>
             </div>
@@ -210,7 +210,7 @@ export default function IRRemotePage() {
         </section>
 
         {/* The Demo Section */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">05__FINAL BUILD</Mono>
           </div>

@@ -47,7 +47,7 @@ export default function RFFingerprintingPage() {
         </header>
 
         {/* The Problem Section */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">01__CONTEXT</Mono>
           </div>
@@ -63,7 +63,7 @@ export default function RFFingerprintingPage() {
         </section>
 
         {/* The Experiment Section */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">02__METHOD</Mono>
           </div>
@@ -90,7 +90,7 @@ export default function RFFingerprintingPage() {
         </section>
 
         {/* The Verdict Section */}
-        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">03__VERDICT</Mono>
           </div>

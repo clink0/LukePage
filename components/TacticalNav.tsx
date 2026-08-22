@@ -44,7 +44,7 @@ const ScrambleLink = ({ href, label, isExternal = false, onClick }: { href: stri
         <Link 
             href={href} 
             target={isExternal ? "_blank" : "_self"}
-            className="block py-2 px-4 font-mono text-sm tracking-widest text-neutral-400 group-hover:text-green-400 transition-colors uppercase"
+            className="block py-2 px-4 font-mono text-xl tracking-widest text-neutral-400 group-hover:text-green-400 transition-colors uppercase"
         >
             <span className="opacity-0 group-hover:opacity-100 mr-2 transition-opacity text-green-600">[</span>
             {displayText}
@@ -69,7 +69,7 @@ const TacticalClock = ({ className = "" }: { className?: string }) => {
 
   if (!time) {
     return (
-      <div className={`font-mono text-xs text-green-900 animate-pulse ${className}`}>
+      <div className={`font-mono text-xl text-green-900 animate-pulse ${className}`}>
         <div className="opacity-50">ESTABLISHING_LINK...</div>
         <div>--:--:--</div>
       </div>
@@ -84,7 +84,7 @@ const TacticalClock = ({ className = "" }: { className?: string }) => {
   });
 
   return (
-    <div className={`font-mono text-xs text-green-700 ${className}`}>
+    <div className={`font-mono text-xl text-green-700 ${className}`}>
       <div className="tracking-widest flex items-center gap-2">
         <span className="text-green-900">SYS.TIME:</span> {formattedTime}
       </div>
@@ -108,7 +108,7 @@ export default function TacticalNav() {
                 {/* Left: Status / ID */}
                 <div className="flex items-center gap-4">
                     <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse" />
-                    <span className="font-mono text-xs text-green-700 tracking-widest">
+                    <span className="font-mono text-xl text-green-700 tracking-widest">
                         PORTFOLIO_V1
                     </span>
                 </div>
@@ -127,7 +127,7 @@ export default function TacticalNav() {
                 {/* Mobile Menu Toggle Button */}
                 <button 
                   onClick={() => setIsOpen(!isOpen)}
-                  className="md:hidden font-mono text-sm tracking-widest text-green-500 hover:text-green-400 transition-colors uppercase p-2"
+                  className="md:hidden font-mono text-xl tracking-widest text-green-500 hover:text-green-400 transition-colors uppercase p-2"
                 >
                   [{isOpen ? 'CLOSE' : 'MENU'}]
                 </button>
