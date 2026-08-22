@@ -9,7 +9,7 @@ import { Heading, Text, Mono } from '@/components/ui/Typography';
 // review deck (Fort Lewis College, Dec 2024) — real photos of the
 // hardware, real diagrams, and real result plots, not stock art.
 const CONCEPT_OPS_SRC     = '/media/laser/concept-of-operations.png';
-const TEST_SETUP_SRC      = '/media/laser/test-setup.png';
+const TEST_SETUP_SRC      = '/media/laser/hardware-setup.png';
 const SOFTWARE_DIAGRAM_SRC = '/media/laser/software-diagram.png';
 const UNPROCESSED_PLY_SRC  = '/media/laser/unprocessed-ply.png';
 const PCD_UNFILTERED_SRC   = '/media/laser/pcd-unfiltered.png';
