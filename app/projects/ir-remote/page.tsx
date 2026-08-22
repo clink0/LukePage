@@ -125,12 +125,12 @@ export default function IRRemotePage() {
               <MediaFrame
                 src={PCB_LAYOUT_SRC}
                 alt="PCB layout of the custom IR remote board, showing the 4x3 keypad pads, ATmega TQFP footprint, and charging/boost circuitry"
-                caption="PCB Layout — v2"
+                caption="PCB Layout, v2"
               />
               <MediaFrame
                 src={SCHEMATIC_SRC}
                 alt="Full schematic of the IR remote: ATmega2560, TP4056 battery charger, MT3608 boost converter, keypad matrix, and IR LED driver"
-                caption="Full Schematic — v2"
+                caption="Full Schematic, v2"
               />
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function IRRemotePage() {
               <iframe
                 className="w-full h-full"
                 src={`https://www.youtube.com/embed/${DEMO_VIDEO_ID}`}
-                title="SkyRemote v2 — final product demo"
+                title="SkyRemote v2, final product demo"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
@@ -233,7 +233,7 @@ export default function IRRemotePage() {
             <div className="bg-neutral-900/50 border border-amber-900/40 p-4 rounded">
               <Mono color="amber" className="mb-2 block">KNOWN ISSUE // BATTERY CIRCUIT</Mono>
               <Text variant="small" className="text-neutral-400">
-                The onboard Li-Ion charging/boost circuit doesn&apos;t power the board correctly — root cause still unconfirmed. The remote works fine on external power, so for now v2 runs with a soldered jumper bypassing the battery circuit entirely. Debugging the charger path is next on the list.
+                The onboard Li-Ion charging/boost circuit doesn&apos;t power the board correctly: root cause still unconfirmed. The remote works fine on external power, so for now v2 runs with a soldered jumper bypassing the battery circuit entirely. Debugging the charger path is next on the list.
               </Text>
             </div>
           </div>

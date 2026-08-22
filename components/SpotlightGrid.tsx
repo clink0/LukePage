@@ -58,7 +58,7 @@ const projects: Project[] = [
     id: '06',
     codeName: 'PMOS FAB',
     realName: 'PMOS Transistor Fabrication',
-    description: 'Full 11-lab cleanroom process flow — oxidation, photolithography, diffusion, and metallization — building a PMOS device on 2" silicon from scratch.',
+    description: 'Full 11-lab cleanroom process flow (oxidation, photolithography, diffusion, and metallization) building a PMOS device on 2" silicon from scratch.',
     tags: ['Semiconductor Fab', 'Photolithography', 'PVD Sputtering', 'Cleanroom'],
     link: '/projects/pmos-fab'
   },
