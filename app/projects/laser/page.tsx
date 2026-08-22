@@ -54,7 +54,7 @@ function MediaFrame({
       <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(244,63,94,0.015)_2px,rgba(244,63,94,0.015)_4px)] rounded-lg" />
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black/70 to-transparent" />
       <div className="pointer-events-none absolute bottom-3 left-4">
-        <Mono className="text-rose-500/70 text-xs">{caption}</Mono>
+        <Mono className="text-rose-300 text-xs">{caption}</Mono>
       </div>
     </div>
   );
@@ -87,21 +87,21 @@ export default function LaserPage() {
         {/* Header */}
         <header className="mb-24 border-b border-rose-900/50 pb-12">
           <div className="flex items-center gap-4 mb-6 flex-wrap">
-            <Mono color="red" className="opacity-70">
+            <Mono color="red">
               REF-05 // LASER
             </Mono>
             <span className="text-neutral-700">|</span>
-            <Mono className="text-neutral-600 text-xs">FORT LEWIS COLLEGE // CAPSTONE, DEC 2024</Mono>
+            <Mono className="text-neutral-400 text-xs">FORT LEWIS COLLEGE // CAPSTONE, DEC 2024</Mono>
             <span className="text-neutral-700">|</span>
-            <Mono className="text-neutral-600 text-xs">CUSTOMER: CLEAN SPACE LLC</Mono>
+            <Mono className="text-neutral-400 text-xs">CUSTOMER: CLEAN SPACE LLC</Mono>
           </div>
 
           <Heading variant="h1" className="text-5xl md:text-7xl mb-6">
             LiDAR Orbital <br/>
-            <Text as="span" className="text-neutral-500 font-bold">Debris Characterization</Text>
+            <span className="text-neutral-300 font-bold tracking-normal">Debris Characterization</span>
           </Heading>
 
-          <Text className="text-xl md:text-2xl text-rose-400/90 font-mono leading-relaxed max-w-2xl">
+          <Text className="text-xl md:text-2xl text-rose-300 font-mono leading-relaxed max-w-2xl">
             Detecting and characterizing space debris spin-rates using high-resolution point cloud analysis.
           </Text>
 
@@ -114,8 +114,8 @@ export default function LaserPage() {
               { val: '~25%',  label: 'Height Error' },
             ].map(({ val, label }) => (
               <div key={label} className="border border-rose-900/30 bg-neutral-950/60 p-4 rounded">
-                <div className="text-2xl font-bold text-rose-400 font-mono">{val}</div>
-                <Mono className="text-neutral-500 text-xs mt-1">{label}</Mono>
+                <div className="text-2xl font-bold text-rose-300 font-mono">{val}</div>
+                <Mono className="text-neutral-400 text-xs mt-1">{label}</Mono>
               </div>
             ))}
           </div>
@@ -124,7 +124,7 @@ export default function LaserPage() {
         {/* 01 — The Problem */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">01__ORBIT</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">01__ORBIT</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">The Kessler Syndrome</Heading>
@@ -144,7 +144,7 @@ export default function LaserPage() {
                   className="w-full h-auto"
                 />
               </div>
-              <Mono className="text-rose-500/70 text-xs block text-center mt-2">Fig. 2 — Concept of Operations</Mono>
+              <Mono className="text-rose-300 text-xs block text-center mt-2">Fig. 2 — Concept of Operations</Mono>
             </div>
 
             <Text className="text-neutral-400">
@@ -156,7 +156,7 @@ export default function LaserPage() {
         {/* 02 — The Hardware */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">02__SENSOR</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">02__SENSOR</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">Hardware Architecture</Heading>
@@ -192,7 +192,7 @@ export default function LaserPage() {
         {/* 03 — The Algorithms */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">03__ALGORITHM</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">03__ALGORITHM</Mono>
           </div>
 
           <div className="min-w-0">
@@ -251,7 +251,7 @@ export default function LaserPage() {
         {/* 04 — Testing */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">04__TESTING</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">04__TESTING</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">Ground Truth &amp; Validation</Heading>
@@ -271,14 +271,14 @@ export default function LaserPage() {
                 allowFullScreen
               />
             </div>
-            <Mono className="text-rose-500/70 text-xs">// PCD animation — cleaned triangular test object spinning at 5.22 RPM</Mono>
+            <Mono className="text-rose-300 text-xs">// PCD animation — cleaned triangular test object spinning at 5.22 RPM</Mono>
           </div>
         </section>
 
         {/* 05 — Results */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">05__RESULTS</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">05__RESULTS</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">Measured vs. Truth</Heading>
@@ -290,11 +290,11 @@ export default function LaserPage() {
               <table className="w-full text-sm border-collapse">
                 <thead>
                   <tr className="border-b border-rose-900/30">
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-500 text-xs">METRIC</Mono></th>
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-500 text-xs">TRUTH</Mono></th>
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-500 text-xs">AVG DEVIATION</Mono></th>
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-500 text-xs">% ERROR</Mono></th>
-                    <th className="text-left py-2"><Mono className="text-neutral-500 text-xs">REQ. (≤5%)</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-xs">METRIC</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-xs">TRUTH</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-xs">AVG DEVIATION</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-400 text-xs">% ERROR</Mono></th>
+                    <th className="text-left py-2"><Mono className="text-neutral-400 text-xs">REQ. (≤5%)</Mono></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-900">
@@ -309,10 +309,10 @@ export default function LaserPage() {
                       <td className="py-3 pr-6"><Mono className="text-neutral-300">{truth}</Mono></td>
                       <td className="py-3 pr-6"><Mono className="text-neutral-300">{dev}</Mono></td>
                       <td className="py-3 pr-6">
-                        <span className={`font-mono text-sm uppercase tracking-widest ${met ? 'text-green-500' : 'text-red-500'}`}>{err}</span>
+                        <span className={`font-mono text-sm uppercase tracking-widest ${met ? 'text-green-400' : 'text-red-400'}`}>{err}</span>
                       </td>
                       <td className="py-3">
-                        <span className={`text-xs font-mono px-2 py-0.5 rounded border ${met ? 'border-green-900/50 text-green-500 bg-green-900/20' : 'border-red-900/50 text-red-500 bg-red-900/20'}`}>
+                        <span className={`text-xs font-mono px-2 py-0.5 rounded border ${met ? 'border-green-900/50 text-green-400 bg-green-900/20' : 'border-red-900/50 text-red-400 bg-red-900/20'}`}>
                           {met ? 'MET' : 'MISSED'}
                         </span>
                       </td>
@@ -340,7 +340,7 @@ export default function LaserPage() {
         {/* 06 — Reflection & Future Work */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">06__REFLECTION</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">06__REFLECTION</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-6">Challenges &amp; Future Work</Heading>
@@ -403,7 +403,7 @@ export default function LaserPage() {
               ].map(({ title, body }) => (
                 <div key={title} className="border border-neutral-800 rounded-lg p-4">
                   <Text className="text-white font-semibold mb-1">{title}</Text>
-                  <Text className="text-neutral-500 text-sm">{body}</Text>
+                  <Text className="text-neutral-400 text-sm">{body}</Text>
                 </div>
               ))}
             </div>
@@ -416,7 +416,7 @@ export default function LaserPage() {
             <img src={TEAM_PHOTO_SRC} alt="The LASER team, captured in false-color on the project's own LiDAR camera" className="w-full h-auto" />
           </div>
 
-          <Mono className="text-neutral-500 mb-4 block">Credits</Mono>
+          <Mono className="text-neutral-400 mb-4 block">Credits</Mono>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
             <div>
               <Mono color="red" className="text-xs block mb-1">FACULTY ADVISOR</Mono>
@@ -443,14 +443,14 @@ export default function LaserPage() {
               <Text className="text-neutral-300 text-sm">Martin Coba</Text>
             </div>
           </div>
-          <Text className="text-neutral-600 text-xs mt-4">
+          <Text className="text-neutral-400 text-xs mt-4">
             L.A.S.E.R. — LiDAR And Sensor Engineering Researchers — Fort Lewis College Capstone, December 2024.
           </Text>
         </section>
 
         {/* Footer / Tech Stack */}
         <footer className="border-t border-neutral-800 pt-12 mt-20">
-          <Mono className="text-neutral-500 mb-6 block">Mission Tech Stack</Mono>
+          <Mono className="text-neutral-400 mb-6 block">Mission Tech Stack</Mono>
           <div className="flex flex-wrap gap-3">
             {['Python', 'Open3D', 'Intel RealSense SDK', 'NumPy', 'Point Cloud Library', 'RANSAC', 'Linear Regression', 'Raspberry Pi 5', 'Fusion 360 / SolidWorks'].map((tech) => (
               <Mono
