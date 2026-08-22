@@ -31,17 +31,17 @@ export default function RFFingerprintingPage() {
         {/* Header Section */}
         <header className="mb-24 border-b border-green-900/50 pb-12">
           <div className="flex items-center gap-4 mb-6">
-            <Mono color="green" className="opacity-70">
+            <Mono color="green">
               REF-01 // SIGNAL BIAS
             </Mono>
           </div>
           
           <Heading variant="h1" className="text-5xl md:text-7xl mb-6">
             Neural Network: <br/>
-            <Text as="span" className="text-neutral-500 font-bold">Signal Bias Analysis</Text>
+            <span className="text-neutral-300 font-bold tracking-normal">Signal Bias Analysis</span>
           </Heading>
           
-          <Text className="text-xl md:text-2xl text-green-400/90 font-mono leading-relaxed max-w-2xl">
+          <Text className="text-xl md:text-2xl text-green-300 font-mono leading-relaxed max-w-2xl">
             Are machine learning models in Radio Frequency Fingerprinting truly learning hardware characteristics, or simply the wireless channel?
           </Text>
         </header>
@@ -49,7 +49,7 @@ export default function RFFingerprintingPage() {
         {/* The Problem Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">01__CONTEXT</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">01__CONTEXT</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">The Promise & Challenge of RFF</Heading>
@@ -65,7 +65,7 @@ export default function RFFingerprintingPage() {
         {/* The Experiment Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">02__METHOD</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">02__METHOD</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">Experimental Setup</Heading>
@@ -92,7 +92,7 @@ export default function RFFingerprintingPage() {
         {/* The Verdict Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">03__VERDICT</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">03__VERDICT</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-6">Summary of Findings</Heading>
@@ -124,7 +124,7 @@ export default function RFFingerprintingPage() {
 
         {/* Footer / Tech Stack */}
         <footer className="border-t border-neutral-800 pt-12 mt-20">
-          <Mono className="text-neutral-500 mb-6 block">Technologies Deployed</Mono>
+          <Mono className="text-neutral-300 mb-6 block">Technologies Deployed</Mono>
           <div className="flex flex-wrap gap-3">
             {['HackRF One', 'BladeRF 2.0', 'Python', 'Scikit-learn', 'Random Forest', 'Signal Processing'].map((tech) => (
               <Mono 

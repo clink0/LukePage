@@ -39,8 +39,8 @@ export function Text({ variant = "default", className, children, as: Component =
   const styles = {
     default: "text-base text-neutral-300 leading-relaxed",
     lead: "text-xl md:text-2xl text-neutral-400 font-light leading-relaxed",
-    muted: "text-sm text-neutral-500",
-    small: "text-xs text-neutral-500",
+    muted: "text-sm text-neutral-400",
+    small: "text-sm text-neutral-400",
   };
 
   return (
