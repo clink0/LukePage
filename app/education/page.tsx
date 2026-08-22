@@ -100,6 +100,25 @@ export default function EducationPage() {
             <Text className="text-neutral-400 mt-6 max-w-2xl">
               Building on the embedded systems, signal processing, and hardware design work from my B.S., now pursuing graduate coursework in electrical engineering.
             </Text>
+
+            <Mono className="text-neutral-400 mt-10 mb-6 block">Fall 2026 Coursework // 9 Credits // Full-Time</Mono>
+            <ul className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              <CourseItem
+                code="ELEG 539"
+                title="Electronic Materials"
+                desc="Crystal structure and band theory underlying semiconductor and optoelectronic devices. Taught by Morgan E. Ware."
+              />
+              <CourseItem
+                code="ELEG 520"
+                title="Semiconductor Devices"
+                desc="Graduate-level PN junction, BJT, and MOSFET device physics. Taught by Fisher Yu."
+              />
+              <CourseItem
+                code="ELEG 576"
+                title="Adv. EM Scattering & Transmission"
+                desc="Advanced electromagnetic wave scattering, transmission lines, and boundary-value problems. Taught by Samir M. ElGhazaly."
+              />
+            </ul>
           </div>
 
           {/* Degree Header */}
