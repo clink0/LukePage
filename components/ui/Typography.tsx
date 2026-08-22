@@ -37,9 +37,9 @@ type TextProps = {
 
 export function Text({ variant = "default", className, children, as: Component = "p" }: TextProps) {
   const styles = {
-    default: "text-base text-neutral-300 leading-relaxed",
+    default: "text-lg text-neutral-300 leading-relaxed",
     lead: "text-xl md:text-2xl text-neutral-400 font-light leading-relaxed",
-    muted: "text-sm text-neutral-400",
+    muted: "text-base text-neutral-400",
     small: "text-sm text-neutral-400",
   };
 
