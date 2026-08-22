@@ -27,31 +27,11 @@ function MediaFrame({
   caption: string;
 }) {
   return (
-    <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-amber-900/40 bg-neutral-950">
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-full object-cover"
-        onError={(e) => {
-          (e.currentTarget as HTMLImageElement).style.display = 'none';
-          const next = e.currentTarget.nextElementSibling as HTMLElement | null;
-          if (next) next.style.display = 'flex';
-        }}
-      />
-      <div
-        className="absolute inset-0 hidden items-center justify-center flex-col gap-3 bg-neutral-950"
-        style={{ display: 'none' }}
-      >
-        <div className="w-16 h-16 border-2 border-amber-900/40 rounded-full flex items-center justify-center">
-          <Mono className="text-amber-900/60 text-xl">📷</Mono>
-        </div>
-        <Mono className="text-neutral-500 text-xl">// image pending</Mono>
-      </div>
-      <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(245,158,11,0.015)_2px,rgba(245,158,11,0.015)_4px)] rounded-lg" />
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black/70 to-transparent" />
-      <div className="pointer-events-none absolute bottom-3 left-4">
-        <Mono className="text-amber-300 text-xl">{caption}</Mono>
-      </div>
+    <div className="rounded-lg overflow-hidden border border-amber-900/40 bg-white p-2 mb-3">
+      <img src={src} alt={alt} className="w-full h-auto" />
+      {caption && (
+        <Mono className="text-amber-300 text-xl block text-center mt-2">{caption}</Mono>
+      )}
     </div>
   );
 }
@@ -558,11 +538,11 @@ export default function HexapodPage() {
 
         {/* ── CREDITS ────────────────────────────────────────── */}
         <section className="mb-20">
-          <div className="rounded-lg overflow-hidden border border-amber-900/40 mb-6 max-w-md">
-            <img
+          <div className="max-w-md">
+            <MediaFrame
               src={TEAM_PHOTO_SRC}
               alt="The hexapod team at the Great Sand Dunes: Janga, Cal, Luke, and Haley, from left to right, holding the robot"
-              className="w-full h-auto"
+              caption="Janga, Cal, Luke, and Haley — at the Great Sand Dunes"
             />
           </div>
           <Mono className="text-neutral-400 mb-4 block">Team</Mono>

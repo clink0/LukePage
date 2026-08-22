@@ -29,31 +29,11 @@ function MediaFrame({
   caption: string;
 }) {
   return (
-    <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-red-900/40 bg-neutral-950">
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-full object-cover"
-        onError={(e) => {
-          (e.currentTarget as HTMLImageElement).style.display = 'none';
-          const next = e.currentTarget.nextElementSibling as HTMLElement | null;
-          if (next) next.style.display = 'flex';
-        }}
-      />
-      <div
-        className="absolute inset-0 hidden items-center justify-center flex-col gap-3 bg-neutral-950"
-        style={{ display: 'none' }}
-      >
-        <div className="w-16 h-16 border-2 border-red-900/40 rounded-full flex items-center justify-center">
-          <Mono className="text-red-900/60 text-xl">📷</Mono>
-        </div>
-        <Mono className="text-neutral-500">// image pending</Mono>
-      </div>
-      <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(239,68,68,0.015)_2px,rgba(239,68,68,0.015)_4px)] rounded-lg" />
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black/70 to-transparent" />
-      <div className="pointer-events-none absolute bottom-3 left-4">
-        <Mono className="text-red-300">{caption}</Mono>
-      </div>
+    <div className="rounded-lg overflow-hidden border border-red-900/40 bg-white p-2 mb-3">
+      <img src={src} alt={alt} className="w-full h-auto" />
+      {caption && (
+        <Mono className="text-red-400 text-xl block text-center mt-2">{caption}</Mono>
+      )}
     </div>
   );
 }
@@ -350,14 +330,8 @@ export default function PMOSFabPage() {
               The HP4145B&apos;s CRT plot came through loud and clear on the diode structures — clean
               forward I-V curves that behave like the ideal diode equation predicts.
             </Text>
-            <div className="space-y-4 mb-6">
-              <div className="rounded-lg overflow-hidden border border-red-900/40 bg-black p-2">
-                <img src={IV_CURVE_1_SRC} alt="HP4145B CRT graphics plot of diode forward I-V curve" className="w-full h-auto" />
-              </div>
-              <div className="rounded-lg overflow-hidden border border-red-900/40 bg-black p-2">
-                <img src={IV_CURVE_2_SRC} alt="HP4145B CRT graphics plot of a second diode forward I-V curve" className="w-full h-auto" />
-              </div>
-            </div>
+            <MediaFrame src={IV_CURVE_1_SRC} alt="HP4145B CRT graphics plot of diode forward I-V curve" caption="HP4145B — diode forward I-V curve (run 1)" />
+            <MediaFrame src={IV_CURVE_2_SRC} alt="HP4145B CRT graphics plot of a second diode forward I-V curve" caption="HP4145B — diode forward I-V curve (run 2)" />
 
             <div className="bg-neutral-900/50 border border-red-900/30 p-4 rounded-lg">
               <Mono color="red" className="mb-2 block">// OUTCOME</Mono>

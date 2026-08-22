@@ -31,31 +31,11 @@ function MediaFrame({
   caption: string;
 }) {
   return (
-    <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-rose-900/40 bg-neutral-950">
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-full object-contain bg-white"
-        onError={(e) => {
-          (e.currentTarget as HTMLImageElement).style.display = 'none';
-          const next = e.currentTarget.nextElementSibling as HTMLElement | null;
-          if (next) next.style.display = 'flex';
-        }}
-      />
-      <div
-        className="absolute inset-0 hidden items-center justify-center flex-col gap-3 bg-neutral-950"
-        style={{ display: 'none' }}
-      >
-        <div className="w-16 h-16 border-2 border-rose-900/40 rounded-full flex items-center justify-center">
-          <Mono className="text-rose-900/60 text-xl">📷</Mono>
-        </div>
-        <Mono className="text-neutral-700 text-xl">// image pending</Mono>
-      </div>
-      <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(244,63,94,0.015)_2px,rgba(244,63,94,0.015)_4px)] rounded-lg" />
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black/70 to-transparent" />
-      <div className="pointer-events-none absolute bottom-3 left-4">
-        <Mono className="text-rose-300 text-xl">{caption}</Mono>
-      </div>
+    <div className="rounded-lg overflow-hidden border border-rose-900/40 bg-white p-2 mb-3">
+      <img src={src} alt={alt} className="w-full h-auto" />
+      {caption && (
+        <Mono className="text-rose-300 text-xl block text-center mt-2">{caption}</Mono>
+      )}
     </div>
   );
 }
@@ -322,14 +302,8 @@ export default function LaserPage() {
               </table>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-              <div className="rounded-lg overflow-hidden border border-rose-900/40 bg-white p-2">
-                <img src={RESULTS_WIDTH_SRC} alt="Graph of measured width vs. 15.1cm truth value, n=10" className="w-full h-auto" />
-              </div>
-              <div className="rounded-lg overflow-hidden border border-rose-900/40 bg-white p-2">
-                <img src={RESULTS_RPM_SRC} alt="Graph of measured rotational velocity vs. 5.22 rpm truth value, n=9" className="w-full h-auto" />
-              </div>
-            </div>
+            <MediaFrame src={RESULTS_WIDTH_SRC} alt="Graph of measured width vs. 15.1cm truth value, n=10" caption="Width vs. Truth (n=10)" />
+            <MediaFrame src={RESULTS_RPM_SRC} alt="Graph of measured rotational velocity vs. 5.22 rpm truth value, n=9" caption="RPM vs. Truth (n=9)" />
 
             <Text className="text-neutral-400">
               Width — measured off the object&apos;s widest, most consistently-visible face — held tightly to truth. Height and depth suffered from the test stand itself bleeding into the bounding box, and RPM estimation degraded sharply near edge-on frames where the tracked plane briefly vanished (see the raw per-frame spikes in <Mono variant="code" color="red">Fig. 21</Mono>).
@@ -412,8 +386,8 @@ export default function LaserPage() {
 
         {/* Team photo + Credits */}
         <section className="mb-20">
-          <div className="rounded-lg overflow-hidden border border-rose-900/40 mb-6 max-w-sm">
-            <img src={TEAM_PHOTO_SRC} alt="The LASER team, captured in false-color on the project's own LiDAR camera" className="w-full h-auto" />
+          <div className="max-w-sm">
+            <MediaFrame src={TEAM_PHOTO_SRC} alt="The LASER team, captured in false-color on the project's own LiDAR camera" caption="The LASER team — shot on their own LiDAR camera" />
           </div>
 
           <Mono className="text-neutral-400 mb-4 block">Credits</Mono>
