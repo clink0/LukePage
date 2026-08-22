@@ -54,6 +54,14 @@ const projects: Project[] = [
     tags: ['Python', 'Open3D', 'LiDAR', 'Computer Vision'],
     link: '/projects/laser'
   },
+  {
+    id: '06',
+    codeName: 'PMOS FAB',
+    realName: 'PMOS Transistor Fabrication',
+    description: 'Full 11-lab cleanroom process flow — oxidation, photolithography, diffusion, and metallization — building a PMOS device on 2" silicon from scratch.',
+    tags: ['Semiconductor Fab', 'Photolithography', 'PVD Sputtering', 'Cleanroom'],
+    link: '/projects/pmos-fab'
+  },
 ];
 
 export default function SpotlightGrid() {
