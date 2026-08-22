@@ -97,7 +97,7 @@ export default function PMOSFabPage() {
           </div>
         </header>
 
-        {/* 01 — Wafer */}
+        {/* 01, Wafer */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">01__WAFER</Mono>
@@ -105,14 +105,14 @@ export default function PMOSFabPage() {
           <div>
             <Heading variant="h3" className="mb-4">Starting Material</Heading>
             <Text className="text-neutral-400 mb-4">
-              ENGR 430 — Semiconductor Device Fabrication, Fort Lewis College, Spring 2026 — is an
+              ENGR 430 (Semiconductor Device Fabrication, Fort Lewis College, Spring 2026) is an
               eleven-lab cleanroom sequence that carries a bare silicon wafer through a full{' '}
               <strong className="text-white">PMOS transistor process flow</strong>. Every wafer started
               identical: <strong className="text-white">2&quot; phosphorus-doped n-type [100] silicon</strong>,
               3&ndash;9 Ω·cm resistivity, 280 ± 25 µm thick.
             </Text>
             <Text className="text-neutral-400 mb-6">
-              Lab 1 is entirely about knowing that starting point cold — wafer handling and cleaning
+              Lab 1 is entirely about knowing that starting point cold, wafer handling and cleaning
               technique, then a four-point probe resistivity measurement (1 mA test current) to confirm
               each wafer actually falls inside spec before a single process step touches it.
             </Text>
@@ -124,7 +124,7 @@ export default function PMOSFabPage() {
           </div>
         </section>
 
-        {/* 02 — Oxidation */}
+        {/* 02, Oxidation */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">02__OXIDATION</Mono>
@@ -134,12 +134,12 @@ export default function PMOSFabPage() {
             <Text className="text-neutral-400 mb-4">
               The field oxide (FOX) that will isolate devices is grown with a dry-wet-dry (DWD) thermal
               cycle, modeled with the <strong className="text-white">Deal-Grove equation</strong>. We only
-              adjusted the first dry-cycle time — 65 and 75 minutes across two runs — and used the model
+              adjusted the first dry-cycle time, 65 and 75 minutes across two runs, and used the model
               to predict a resulting oxide thickness of <strong className="text-white">3300 Å</strong>.
             </Text>
             <Text className="text-neutral-400 mb-6">
               The ellipsometer and a cleaved SEM cross-section told a different story: real oxide
-              thickness measured <strong className="text-white">~1.1 µm (11,000 Å)</strong> — over three
+              thickness measured <strong className="text-white">~1.1 µm (11,000 Å)</strong>, over three
               times the Deal-Grove prediction. A large FOX isn&apos;t necessarily bad (it buys margin against
               over-etching later), but it&apos;s a real gap between the model and the furnace worth
               flagging rather than quietly rounding away.
@@ -153,13 +153,13 @@ export default function PMOSFabPage() {
               <MediaFrame
                 src={SEM_FOX_SRC}
                 alt="SEM cross-sectional micrograph measuring the grown field oxide layer at 1.19 micrometers"
-                caption="SEM cross-section — measured FOX: 1.19 µm"
+                caption="SEM cross-section, measured FOX: 1.19 µm"
               />
             </div>
           </div>
         </section>
 
-        {/* 03 — Lithography */}
+        {/* 03, Lithography */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">03__LITHOGRAPHY</Mono>
@@ -167,8 +167,8 @@ export default function PMOSFabPage() {
           <div>
             <Heading variant="h3" className="mb-4">Four Photomasks, One Routine</Heading>
             <Text className="text-neutral-400 mb-4">
-              Every patterning step in this process — active area, gate strip, contact openings, and
-              final metal — runs the same core routine on a <strong className="text-white">Karl Süss
+              Every patterning step in this process (active area, gate strip, contact openings, and
+              final metal) runs the same core routine on a <strong className="text-white">Karl Süss
               contact aligner</strong>: spin coat photoresist, soft bake, align to the previous layer,
               expose under UV (dose calculated from a measured lamp intensity, not a fixed timer), develop,
               wet-etch with buffered oxide etch (BOE), then strip the resist.
@@ -176,13 +176,13 @@ export default function PMOSFabPage() {
             <Text className="text-neutral-400 mb-6">
               Mid-semester we adjusted the spin speed from 3000 to 5000 RPM for a thinner, more uniform
               resist coat, and changed our Karl Süss alignment habits to stop the wafer from shifting
-              during exposure — both fixes are now baked into the standard procedure for the next class.
+              during exposure, both fixes are now baked into the standard procedure for the next class.
             </Text>
             <div className="space-y-4">
               <MediaFrame
                 src={ALIGNER_SRC}
                 alt="Karl Suss contact aligner with a UV light meter sensor placed on the chuck to measure exposure intensity"
-                caption="Karl Süss aligner — measuring UV lamp intensity"
+                caption="Karl Süss aligner, measuring UV lamp intensity"
               />
               <MediaFrame
                 src={MASK_SRC}
@@ -193,7 +193,7 @@ export default function PMOSFabPage() {
           </div>
         </section>
 
-        {/* 04 — Diffusion */}
+        {/* 04, Diffusion */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">04__DIFFUSION</Mono>
@@ -202,7 +202,7 @@ export default function PMOSFabPage() {
             <Heading variant="h3" className="mb-4">Spin-On Dopant &amp; Drive-In</Heading>
             <Text className="text-neutral-400 mb-4">
               With the active area opened, a spin-on dopant (SOD) is applied and driven into the
-              exposed silicon in two thermal steps — a short, high-concentration{' '}
+              exposed silicon in two thermal steps, a short, high-concentration{' '}
               <strong className="text-white">predeposition</strong> followed by a longer{' '}
               <strong className="text-white">drive-in</strong> that pushes the dopant to its target
               junction depth. Wafers were laid flat and parallel in the quartz boat, not stood on edge,
@@ -219,7 +219,7 @@ export default function PMOSFabPage() {
           </div>
         </section>
 
-        {/* 05 — Gate */}
+        {/* 05, Gate */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">05__GATE</Mono>
@@ -230,14 +230,14 @@ export default function PMOSFabPage() {
               Mask 2 strips the oxide back off the gate region, and a second, thinner oxidation regrows
               a dedicated <strong className="text-white">gate oxide</strong> in its place. Expected
               thickness from the process model was 500&ndash;600 Å; the ellipsometer measured{' '}
-              <strong className="text-white">680&ndash;740 Å</strong> across our runs — closer than the field
+              <strong className="text-white">680&ndash;740 Å</strong> across our runs, closer than the field
               oxide gap, but still consistently thicker than modeled, which tracks with everything else
               we saw from this furnace.
             </Text>
           </div>
         </section>
 
-        {/* 06 — Metallization */}
+        {/* 06, Metallization */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">06__METAL</Mono>
@@ -253,7 +253,7 @@ export default function PMOSFabPage() {
               <Mono color="red" className="mb-2 block">// THE EVAPORATOR PROBLEM</Mono>
               <Text className="text-neutral-300">
                 Our first choice was the thermal evaporator. Run one finished, but a carbon deposit
-                inside the tool — leftover from it sitting unused — vaporized along with the aluminum
+                inside the tool, leftover from it sitting unused, vaporized along with the aluminum
                 and contaminated the film. Run two was worse: the diffusion pump&apos;s chiller lines
                 failed mid-deposition and started leaking water. We killed the bias and vented the
                 chamber immediately, but the exposed aluminum oxidized into a hard, sapphire-like layer.
@@ -275,7 +275,7 @@ export default function PMOSFabPage() {
               <MediaFrame
                 src={DENTON_PANEL_SRC}
                 alt="Denton Vacuum sputter coater DC power switch panel"
-                caption="Denton Desktop Pro — DC power panel"
+                caption="Denton Desktop Pro, DC power panel"
               />
               <MediaFrame
                 src={GAS_VALVES_SRC}
@@ -291,12 +291,12 @@ export default function PMOSFabPage() {
             <MediaFrame
               src={FINISHED_WAFER_SRC}
               alt="Finished wafer after aluminum deposition and patterning, showing nine iridescent dies with visible circuit patterns"
-              caption="Post-metallization — all nine dies, evenly coated"
+              caption="Post-metallization, all nine dies, evenly coated"
             />
           </div>
         </section>
 
-        {/* 07 — Devices */}
+        {/* 07, Devices */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">07__DEVICES</Mono>
@@ -327,17 +327,17 @@ export default function PMOSFabPage() {
             </div>
 
             <Text className="text-neutral-400 mb-4">
-              The HP4145B&apos;s CRT plot came through loud and clear on the diode structures — clean
+              The HP4145B&apos;s CRT plot came through loud and clear on the diode structures, clean
               forward I-V curves that behave like the ideal diode equation predicts.
             </Text>
-            <MediaFrame src={IV_CURVE_1_SRC} alt="HP4145B CRT graphics plot of diode forward I-V curve" caption="HP4145B — diode forward I-V curve (run 1)" />
-            <MediaFrame src={IV_CURVE_2_SRC} alt="HP4145B CRT graphics plot of a second diode forward I-V curve" caption="HP4145B — diode forward I-V curve (run 2)" />
+            <MediaFrame src={IV_CURVE_1_SRC} alt="HP4145B CRT graphics plot of diode forward I-V curve" caption="HP4145B: diode forward I-V curve (run 1)" />
+            <MediaFrame src={IV_CURVE_2_SRC} alt="HP4145B CRT graphics plot of a second diode forward I-V curve" caption="HP4145B: diode forward I-V curve (run 2)" />
 
             <div className="bg-neutral-900/50 border border-red-900/30 p-4 rounded-lg">
               <Mono color="red" className="mb-2 block">// OUTCOME</Mono>
               <Text className="text-neutral-300">
                 Honest result: this run produced a working <strong className="text-white">p-n junction
-                diode</strong> with measurable, well-behaved I-V curves — not a fully functional PMOS
+                diode</strong> with measurable, well-behaved I-V curves, not a fully functional PMOS
                 transistor. Between the evaporator losses and the discrepancies compounding from
                 oxidation through diffusion, the three-terminal devices didn&apos;t come out clean enough
                 to characterize as transistors by the end of the semester. The diode structures did,

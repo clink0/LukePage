@@ -54,7 +54,7 @@ export default function RFFingerprintingPage() {
           <div>
             <Heading variant="h3" className="mb-4">The Promise & Challenge of RFF</Heading>
             <Text className="text-neutral-400 mb-4">
-              The increase of Internet of Things (IoT) devices has created a high demand for new security methods. Radio Frequency Fingerprinting (RFF) identifies devices by unique, subtle imperfections in their radio signals, much like a human fingerprint. These fingerprints are often found in the signal&apos;s turn-on transient—the initial burst of energy when a device begins to transmit.
+              The increase of Internet of Things (IoT) devices has created a high demand for new security methods. Radio Frequency Fingerprinting (RFF) identifies devices by unique, subtle imperfections in their radio signals, much like a human fingerprint. These fingerprints are often found in the signal&apos;s turn-on transient: the initial burst of energy when a device begins to transmit.
             </Text>
             <Text className="text-neutral-400">
               While promising, a major challenge is that the wireless channel, or the environment the signal travels through, can distort the signal and obscure the device&apos;s true fingerprint. 

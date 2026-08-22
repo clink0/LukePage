@@ -6,7 +6,7 @@ import { Heading, Text, Mono } from '@/components/ui/Typography';
 
 // ─── MEDIA CONFIG ────────────────────────────────────────────
 // All assets below were extracted directly from the team's final
-// review deck (Fort Lewis College, Dec 2024) — real photos of the
+// review deck (Fort Lewis College, Dec 2024), real photos of the
 // hardware, real diagrams, and real result plots, not stock art.
 const CONCEPT_OPS_SRC     = '/media/laser/concept-of-operations.png';
 const TEST_SETUP_SRC      = '/media/laser/hardware-setup.png';
@@ -85,7 +85,7 @@ export default function LaserPage() {
             Detecting and characterizing space debris spin-rates using high-resolution point cloud analysis.
           </Text>
 
-          {/* Stat bar — honest results, see 05__RESULTS below */}
+          {/* Stat bar, honest results, see 05__RESULTS below */}
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { val: '~2%',   label: 'Width Error' },
@@ -101,7 +101,7 @@ export default function LaserPage() {
           </div>
         </header>
 
-        {/* 01 — The Problem */}
+        {/* 01, The Problem */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">01__ORBIT</Mono>
@@ -112,7 +112,7 @@ export default function LaserPage() {
               With over 4,000 active satellites and countless fragments of defunct rockets in orbit, space debris poses a catastrophic risk to future missions. To capture or de-orbit this debris, we first need to know <i className="text-white">exactly</i> how it is moving.
             </Text>
             <Text className="text-neutral-400 mb-6">
-              Our customer, <strong className="text-white">Clean Space LLC</strong>, is developing a debris-capture mission and needed a way to measure a target&apos;s dimensions and rotational velocity before attempting to grapple it. LASER — <i>LiDAR And Sensor Engineering Researchers</i> — built a LiDAR-based system to derive those metrics and produce a 3D rendering of the debris for use in a subsequent capture mission.
+              Our customer, <strong className="text-white">Clean Space LLC</strong>, is developing a debris-capture mission and needed a way to measure a target&apos;s dimensions and rotational velocity before attempting to grapple it. LASER (<i>LiDAR And Sensor Engineering Researchers</i>) built a LiDAR-based system to derive those metrics and produce a 3D rendering of the debris for use in a subsequent capture mission.
             </Text>
 
             <div className="bg-neutral-900/50 border border-rose-900/30 p-5 rounded-lg mb-6">
@@ -124,7 +124,7 @@ export default function LaserPage() {
                   className="w-full h-auto"
                 />
               </div>
-              <Mono className="text-rose-300 text-xl block text-center mt-2">Fig. 2 — Concept of Operations</Mono>
+              <Mono className="text-rose-300 text-xl block text-center mt-2">Fig. 2, Concept of Operations</Mono>
             </div>
 
             <Text className="text-neutral-400">
@@ -133,7 +133,7 @@ export default function LaserPage() {
           </div>
         </section>
 
-        {/* 02 — The Hardware */}
+        {/* 02, The Hardware */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">02__SENSOR</Mono>
@@ -165,11 +165,11 @@ export default function LaserPage() {
               </div>
             </div>
 
-            <MediaFrame src={TEST_SETUP_SRC} alt="Labeled recording and testing setup: LiDAR Camera on tripod, Raspberry Pi, and rotating Test Stand with triangular test object" caption="Fig. 9 — Recording / Testing Setup" />
+            <MediaFrame src={TEST_SETUP_SRC} alt="Labeled recording and testing setup: LiDAR Camera on tripod, Raspberry Pi, and rotating Test Stand with triangular test object" caption="Fig. 9, Recording / Testing Setup" />
           </div>
         </section>
 
-        {/* 03 — The Algorithms */}
+        {/* 03, The Algorithms */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">03__ALGORITHM</Mono>
@@ -186,8 +186,8 @@ export default function LaserPage() {
             </Text>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-              <MediaFrame src={PCD_UNFILTERED_SRC} alt="Unfiltered point cloud, dominated by background wall noise" caption="Fig. 7 — Unfiltered PCD" />
-              <MediaFrame src={PCD_FILTERED_SRC} alt="Filtered point cloud isolating the triangular test object" caption="Fig. 8 — Filtered PCD" />
+              <MediaFrame src={PCD_UNFILTERED_SRC} alt="Unfiltered point cloud, dominated by background wall noise" caption="Fig. 7, Unfiltered PCD" />
+              <MediaFrame src={PCD_FILTERED_SRC} alt="Filtered point cloud isolating the triangular test object" caption="Fig. 8, Filtered PCD" />
             </div>
 
             {/* Code Block: RANSAC Plane Fitting */}
@@ -219,16 +219,16 @@ export default function LaserPage() {
             </div>
 
             <Text className="text-neutral-400 mb-4">
-              For <strong className="text-white">rotational velocity</strong>, the normal vector of the object&apos;s largest RANSAC-fit plane is tracked across consecutive frames — the change in phase angle (Δθ) over the change in timestamp (Δt) gives angular velocity, converted to RPM.
+              For <strong className="text-white">rotational velocity</strong>, the normal vector of the object&apos;s largest RANSAC-fit plane is tracked across consecutive frames, the change in phase angle (Δθ) over the change in timestamp (Δt) gives angular velocity, converted to RPM.
             </Text>
 
             <div className="mb-2">
-              <MediaFrame src={PCD_ANIMATION_SRC} alt="Animated point cloud frame of the cleaned, filtered triangular test object" caption="Fig. 20 — Cleaned PCD Frame" />
+              <MediaFrame src={PCD_ANIMATION_SRC} alt="Animated point cloud frame of the cleaned, filtered triangular test object" caption="Fig. 20, Cleaned PCD Frame" />
             </div>
           </div>
         </section>
 
-        {/* 04 — Testing */}
+        {/* 04, Testing */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">04__TESTING</Mono>
@@ -246,16 +246,16 @@ export default function LaserPage() {
               <iframe
                 className="w-full h-full"
                 src={`https://www.youtube.com/embed/${DEMO_VIDEO_ID}`}
-                title="LASER — Point cloud animation of the spinning triangular test object"
+                title="LASER: Point cloud animation of the spinning triangular test object"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
             </div>
-            <Mono className="text-rose-300 text-xl">// PCD animation — cleaned triangular test object spinning at 5.22 RPM</Mono>
+            <Mono className="text-rose-300 text-xl">// PCD animation, cleaned triangular test object spinning at 5.22 RPM</Mono>
           </div>
         </section>
 
-        {/* 05 — Results */}
+        {/* 05, Results */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">05__RESULTS</Mono>
@@ -263,7 +263,7 @@ export default function LaserPage() {
           <div>
             <Heading variant="h3" className="mb-4">Measured vs. Truth</Heading>
             <Text className="text-neutral-400 mb-6">
-              The requirements called for ≤5% dimension and RPM error at 90% likelihood. Across n=9&ndash;10 trials, the system met that bar on width but fell short on height, depth, and RPM — an honest result, not a polished one.
+              The requirements called for ≤5% dimension and RPM error at 90% likelihood. Across n=9&ndash;10 trials, the system met that bar on width but fell short on height, depth, and RPM, an honest result, not a polished one.
             </Text>
 
             <div className="mb-6 overflow-x-auto">
@@ -306,12 +306,12 @@ export default function LaserPage() {
             <MediaFrame src={RESULTS_RPM_SRC} alt="Graph of measured rotational velocity vs. 5.22 rpm truth value, n=9" caption="RPM vs. Truth (n=9)" />
 
             <Text className="text-neutral-400">
-              Width — measured off the object&apos;s widest, most consistently-visible face — held tightly to truth. Height and depth suffered from the test stand itself bleeding into the bounding box, and RPM estimation degraded sharply near edge-on frames where the tracked plane briefly vanished (see the raw per-frame spikes in <Mono variant="code" color="red">Fig. 21</Mono>).
+              Width (measured off the object&apos;s widest, most consistently-visible face) held tightly to truth. Height and depth suffered from the test stand itself bleeding into the bounding box, and RPM estimation degraded sharply near edge-on frames where the tracked plane briefly vanished (see the raw per-frame spikes in <Mono variant="code" color="red">Fig. 21</Mono>).
             </Text>
           </div>
         </section>
 
-        {/* 06 — Reflection & Future Work */}
+        {/* 06, Reflection & Future Work */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
           <div className="text-right hidden md:block">
             <Mono className="text-neutral-400 block sticky top-32">06__REFLECTION</Mono>
@@ -368,7 +368,7 @@ export default function LaserPage() {
                 },
                 {
                   title: 'Better Test Simulation',
-                  body: 'A larger, black 4×4×2 m test volume (the current background is too close and the stand itself gets picked up in the size estimate) — explored magnetic levitation or a plastic-thread suspension to remove the stand from frame entirely.',
+                  body: 'A larger, black 4×4×2 m test volume (the current background is too close and the stand itself gets picked up in the size estimate); explored magnetic levitation or a plastic-thread suspension to remove the stand from frame entirely.',
                 },
                 {
                   title: 'Broader Testing Scope',
@@ -387,7 +387,7 @@ export default function LaserPage() {
         {/* Team photo + Credits */}
         <section className="mb-20">
           <div className="max-w-sm">
-            <MediaFrame src={TEAM_PHOTO_SRC} alt="The LASER team, captured in false-color on the project's own LiDAR camera" caption="The LASER team — shot on their own LiDAR camera" />
+            <MediaFrame src={TEAM_PHOTO_SRC} alt="The LASER team, captured in false-color on the project's own LiDAR camera" caption="The LASER team, shot on their own LiDAR camera" />
           </div>
 
           <Mono className="text-neutral-400 mb-4 block">Credits</Mono>
@@ -418,7 +418,7 @@ export default function LaserPage() {
             </div>
           </div>
           <Text className="text-neutral-400 text-xl mt-4">
-            L.A.S.E.R. — LiDAR And Sensor Engineering Researchers — Fort Lewis College Capstone, December 2024.
+            L.A.S.E.R. (LiDAR And Sensor Engineering Researchers), Fort Lewis College Capstone, December 2024.
           </Text>
         </section>
 

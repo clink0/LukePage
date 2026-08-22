@@ -101,7 +101,7 @@ export default function HexapodPage() {
           </Heading>
 
           <Text className="text-xl md:text-2xl text-amber-300 font-mono leading-relaxed max-w-2xl">
-            A six-legged, 18-servo walker built to cross terrain wheels can&apos;t — raced (and danced) at the Great Sand Dunes.
+            A six-legged, 18-servo walker built to cross terrain wheels can&apos;t, then raced (and danced) at the Great Sand Dunes.
           </Text>
 
           {/* Stat bar */}
@@ -128,7 +128,7 @@ export default function HexapodPage() {
           <div>
             <Heading variant="h3" className="mb-4">The Regolith Problem</Heading>
             <Text className="text-neutral-400 mb-4">
-              Loose, granular regolith — the kind NASA&apos;s Lunabotics competition simulates and the kind that covers the Great Sand Dunes — is a nightmare for traditional rovers. Wheels spin out, dig holes, and get stuck.
+              Loose, granular regolith, the kind NASA&apos;s Lunabotics competition simulates and the kind that covers the Great Sand Dunes, is a nightmare for traditional rovers. Wheels spin out, dig holes, and get stuck.
             </Text>
             <Text className="text-neutral-400">
               To guarantee traversal over that terrain, I abandoned wheels entirely and designed a <strong className="text-white">six-legged hexapod</strong> capable of stepping over loose sand rather than rolling through it. The real proving ground ended up being the <strong className="text-white">Colorado Space Grant Robotics Competition</strong>, held right on the dunes.
@@ -145,12 +145,12 @@ export default function HexapodPage() {
             <div>
               <Heading variant="h3" className="mb-4">Standing on markwtech&apos;s Shoulders</Heading>
               <Text className="text-neutral-400 mb-6">
-                Rather than design a hexapod frame from scratch, we started from markwtech&apos;s open-source hexapod design — the 3D model below — and built, wired, and reprogrammed our own unit on top of it, later reworking the servo mounts ourselves (see <Mono variant="code" color="amber">06__MECH</Mono>).
+                Rather than design a hexapod frame from scratch, we started from markwtech&apos;s open-source hexapod design, the 3D model below, and built, wired, and reprogrammed our own unit on top of it, later reworking the servo mounts ourselves (see <Mono variant="code" color="amber">06__MECH</Mono>).
               </Text>
               <MediaFrame
                 src={MWTECH_MODEL_SRC}
-                alt="markwtech open-source hexapod 3D model — six-legged frame with 18 servos and central microcontroller mount, used as the base design"
-                caption="markwtech reference 3D model — our starting point"
+                alt="markwtech open-source hexapod 3D model, six-legged frame with 18 servos and central microcontroller mount, used as the base design"
+                caption="markwtech reference 3D model, our starting point"
               />
             </div>
 
@@ -161,18 +161,18 @@ export default function HexapodPage() {
               <VideoFrame
                 videoId={FIRST_LEG_VIDEO_ID}
                 title="First hexapod leg built and working"
-                caption="First leg — built and moving"
+                caption="First leg, built and moving"
               />
             </div>
 
             <div>
               <Text className="text-neutral-400 mb-4">
-                All six legs assembled, wired, and mounted to the central Arduino Mega controller — fully built for the first time.
+                All six legs assembled, wired, and mounted to the central Arduino Mega controller, fully built for the first time.
               </Text>
               <MediaFrame
                 src={BUILT_ROBOT_SRC}
                 alt="Fully assembled hexapod robot with all six legs, servos, and central Arduino Mega controller, resting on a wooden workbench"
-                caption="Fully assembled — all 18 servos wired"
+                caption="Fully assembled, all 18 servos wired"
               />
             </div>
 
@@ -202,15 +202,15 @@ export default function HexapodPage() {
               <Text className="text-lg text-white">
                 Moving a leg isn't just "move servo A." To place a foot at exactly{' '}
                 <Mono variant="code" color="amber">[x, y, z]</Mono>, you must solve a system
-                of non-linear equations — the Law of Cosines applied through three joint planes
-                simultaneously — to determine coxa, femur, and tibia angles.
+                of non-linear equations, the Law of Cosines applied through three joint planes
+                simultaneously, to determine coxa, femur, and tibia angles.
               </Text>
             </div>
 
             <Text className="text-neutral-400 mb-4">
               I implemented a custom <strong className="text-white">geometric IK engine</strong> in C++,
               validated to sub-millimeter round-trip accuracy across all six legs. It runs in under 0.6ms
-              per leg on the Arduino Mega — fast enough to solve all 18 joints within the 25ms control
+              per leg on the Arduino Mega, fast enough to solve all 18 joints within the 25ms control
               budget at 40Hz.
             </Text>
             <Text className="text-neutral-400">
@@ -232,14 +232,14 @@ export default function HexapodPage() {
             <div className="bg-neutral-900/50 border border-amber-900/30 p-4 rounded-lg mb-6">
               <Mono color="amber" className="mb-2 block text-xl">// R&D, NOT WHAT RACED</Mono>
               <Text className="text-neutral-300 text-xl">
-                This is real, completed work — designed, coded, and validated in simulation — not vaporware.
+                This is real, completed work (designed, coded, and validated in simulation), not vaporware.
                 But coordinating six independently-driven oscillators in firmware turned out to be its own
                 project, and with competition day approaching we shipped a simpler, proven gait instead
                 (see <Mono variant="code" color="amber">05__GAIT</Mono>). This section is what we built toward, not what raced.
               </Text>
             </div>
             <Text className="text-neutral-400 mb-6">
-              Real insects don't compute gait keyframes — their spinal cord runs a self-organizing
+              Real insects don't compute gait keyframes: their spinal cord runs a self-organizing
               oscillator network called a <strong className="text-white">Central Pattern Generator</strong>.
               The brain sends one signal ("walk faster"), and the CPG handles all inter-leg coordination
               automatically. I designed the same architecture for this robot.
@@ -252,10 +252,10 @@ export default function HexapodPage() {
                 <div>dφᵢ/dt = <span className="text-amber-400">ω</span> + Σⱼ <span className="text-amber-400">Kᵢⱼ</span> · sin(φⱼ − φᵢ − <span className="text-amber-400">θᵢⱼ</span>)</div>
               </div>
               <div className="mt-4 space-y-1 text-neutral-300 text-xl">
-                <div><span className="text-neutral-300">φᵢ</span>   — oscillator phase, leg i ∈ [0, 2π)</div>
-                <div><span className="text-neutral-300">ω</span>    — natural frequency  →  controls speed + gait type</div>
-                <div><span className="text-neutral-300">Kᵢⱼ</span>  — coupling strength between legs i and j</div>
-                <div><span className="text-neutral-300">θᵢⱼ</span>  — target phase offset  →  encodes desired gait</div>
+                <div><span className="text-neutral-300">φᵢ</span> : oscillator phase, leg i ∈ [0, 2π)</div>
+                <div><span className="text-neutral-300">ω</span> : natural frequency  →  controls speed + gait type</div>
+                <div><span className="text-neutral-300">Kᵢⱼ</span> : coupling strength between legs i and j</div>
+                <div><span className="text-neutral-300">θᵢⱼ</span> : target phase offset  →  encodes desired gait</div>
               </div>
             </div>
 
@@ -306,8 +306,8 @@ export default function HexapodPage() {
             <Heading variant="h3" className="mb-6">What Actually Raced</Heading>
             <Text className="text-neutral-400 mb-6">
               With the CPG unfinished, the fielded robot ran a <strong className="text-white">fixed tripod
-              gait</strong> adapted from markwtech&apos;s reference code — three legs down at all times,
-              simple and proven — driven through our own IK engine. Obstacle handling was a straightforward
+              gait</strong> adapted from markwtech&apos;s reference code, three legs down at all times,
+              simple and proven, driven through our own IK engine. Obstacle handling was a straightforward
               bump-and-recover loop instead of continuous sensor fusion:
             </Text>
 
@@ -326,7 +326,7 @@ export default function HexapodPage() {
               <Mono color="amber" className="mb-2 block text-xl">// WHAT DIDN&apos;T MAKE IT IN</Mono>
               <Text className="text-neutral-300 text-xl">
                 The IR range finders, foot contact switches, and ultrasonic sensors from the original
-                CPG-fed sensor suite design were never implemented on the competition robot — there simply
+                CPG-fed sensor suite design were never implemented on the competition robot: there simply
                 wasn&apos;t time. Bump switches and the IMU were the entire terrain-sensing budget on race day.
               </Text>
             </div>
@@ -346,7 +346,7 @@ export default function HexapodPage() {
 
             {/* The problem */}
             <Text className="text-neutral-400 mb-6">
-              The original FutureTrace kit mounts every servo as a cantilever — the output shaft
+              The original FutureTrace kit mounts every servo as a cantilever, the output shaft
               is the only structural connection between the servo body and the driven leg segment.
               Every stance phase redirects the robot's full weight radially through that shaft.
               The stock plastic bushing grinds out within hours. The shaft deflects under load,
@@ -357,7 +357,7 @@ export default function HexapodPage() {
             {/* Before / After */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               <div className="border border-neutral-800 rounded-lg p-5 bg-neutral-950/60">
-                <Mono className="text-red-400 text-xl mb-3 block">// BEFORE — FutureTrace kit</Mono>
+                <Mono className="text-red-400 text-xl mb-3 block">// BEFORE: FutureTrace kit</Mono>
                 <div className="font-mono text-xl text-neutral-300 space-y-1 mb-4">
                   <div>servo ──[bushing]──horn──── leg</div>
                   <div className="text-red-400">{'             ↑ all load here'}</div>
@@ -368,7 +368,7 @@ export default function HexapodPage() {
                 </Text>
               </div>
               <div className="border border-amber-900/40 rounded-lg p-5 bg-neutral-950/60">
-                <Mono className="text-green-400 text-xl mb-3 block">// AFTER — markwtech frame</Mono>
+                <Mono className="text-green-400 text-xl mb-3 block">// AFTER: markwtech frame</Mono>
                 <div className="font-mono text-xl text-neutral-300 space-y-1 mb-4">
                   <div>servo ──[<span className="text-amber-400">624Z</span>]──horn──── leg ────[<span className="text-amber-400">624Z</span>]── mount</div>
                   <div className="text-green-400">{'      ↑ shared                     ↑ shared'}</div>
@@ -385,18 +385,18 @@ export default function HexapodPage() {
               <Mono color="amber" className="mb-3 block text-xl">// WHY THIS FRAME</Mono>
               <Text className="text-neutral-400 text-xl mb-4">
                 The markwtech hexapod (inspired by the Trossen PhantomX, designed for MG996R-class
-                servos) solves the shear problem at the design level — not as a retrofit. Every one
+                servos) solves the shear problem at the design level, not as a retrofit. Every one
                 of the 18 servo mounts has a press-fit 624Z bearing seat on the outboard side,
                 machined into the print geometry itself. The bearings are structural from day one.
               </Text>
               <ul className="space-y-2">
                 {[
-                  { label: 'Frame material', val: 'PLA, 30% infill — printed hot (210°C) for layer adhesion' },
-                  { label: 'Foot bumpers',   val: 'TPU, 10% infill — compliant, grip-enhancing on regolith' },
-                  { label: 'Bearings',       val: '624Z (4mm ID × 13mm OD × 5mm) × 18 — one per servo mount' },
+                  { label: 'Frame material', val: 'PLA, 30% infill, printed hot (210°C) for layer adhesion' },
+                  { label: 'Foot bumpers',   val: 'TPU, 10% infill, compliant, grip-enhancing on regolith' },
+                  { label: 'Bearings',       val: '624Z (4mm ID × 13mm OD × 5mm) × 18, one per servo mount' },
                   { label: 'Fasteners',      val: '4-40 machine screws + nuts, 3/8″ / 1/2″ / 5/8″ lengths' },
-                  { label: 'Servos',         val: 'MG996R clone, 11 kg·cm — same pinout as existing firmware' },
-                  { label: 'Files',          val: 'Thingiverse #3463845 — Fusion 360 source + print-ready STLs' },
+                  { label: 'Servos',         val: 'MG996R clone, 11 kg·cm, same pinout as existing firmware' },
+                  { label: 'Files',          val: 'Thingiverse #3463845, Fusion 360 source + print-ready STLs' },
                 ].map(({ label, val }) => (
                   <li key={label} className="flex items-start gap-3">
                     <Mono color="amber" className="mt-0.5 flex-shrink-0 w-40 text-right hidden sm:block">{label}</Mono>
@@ -446,7 +446,7 @@ export default function HexapodPage() {
             <Heading variant="h3" className="mb-6">Control Loop Budget</Heading>
             <Text className="text-neutral-400 mb-6">
               The Arduino Mega runs at 16MHz with no FPU. This is the budget for the gait that actually
-              raced — fixed tripod gait, bump switches, and IMU heading correction — inside the 40Hz
+              raced (fixed tripod gait, bump switches, and IMU heading correction) inside the 40Hz
               (25ms) loop.
             </Text>
 
@@ -475,7 +475,7 @@ export default function HexapodPage() {
             </div>
 
             <Text className="text-neutral-300 text-xl">
-              Total used: ~4.6ms of 25ms available. Plenty of headroom left over — most of it would
+              Total used: ~4.6ms of 25ms available. Plenty of headroom left over: most of it would
               have gone to the CPG and the extra sensors in 04__CPG, had there been time to finish them.
             </Text>
           </div>
@@ -490,13 +490,13 @@ export default function HexapodPage() {
             <div>
               <Heading variant="h3" className="mb-4">Race Day at the Great Sand Dunes</Heading>
               <Text className="text-neutral-400 mb-6">
-                The Colorado Space Grant Robotics Competition ran right on the dunes — as close to a
+                The Colorado Space Grant Robotics Competition ran right on the dunes, as close to a
                 lunar regolith analog as Colorado gets.
               </Text>
               <MediaFrame
                 src={DUNES_MORNING_SRC}
                 alt="Morning view of the Great Sand Dunes in Colorado, with storm clouds rolling over the mountains behind the dune field"
-                caption="Great Sand Dunes, CO — competition morning"
+                caption="Great Sand Dunes, CO: competition morning"
               />
             </div>
 
@@ -507,7 +507,7 @@ export default function HexapodPage() {
               <MediaFrame
                 src={COURSE_RUN_SRC}
                 alt="Hexapod robot walking a lane marked with wooden course stakes on the sand dunes, leaving a trail of leg prints in the sand"
-                caption="First course — completed"
+                caption="First course, completed"
               />
             </div>
 
@@ -519,7 +519,7 @@ export default function HexapodPage() {
               <VideoFrame
                 videoId={FAILED_COURSES_VIDEO_ID}
                 title="Hexapod failing the remaining competition courses"
-                caption="The other courses — did not go as well"
+                caption="The other courses: did not go as well"
               />
             </div>
 
@@ -530,7 +530,7 @@ export default function HexapodPage() {
               <VideoFrame
                 videoId={DANCE_VIDEO_ID}
                 title="Hexapod dance mode"
-                caption="Dance mode — undefeated"
+                caption="Dance mode, undefeated"
               />
             </div>
           </div>
@@ -542,12 +542,12 @@ export default function HexapodPage() {
             <MediaFrame
               src={TEAM_PHOTO_SRC}
               alt="The hexapod team at the Great Sand Dunes: Janga, Cal, Luke, and Haley, from left to right, holding the robot"
-              caption="Janga, Cal, Luke, and Haley — at the Great Sand Dunes"
+              caption="Janga, Cal, Luke, and Haley, at the Great Sand Dunes"
             />
           </div>
           <Mono className="text-neutral-400 mb-4 block">Team</Mono>
           <Text className="text-neutral-300 text-xl mb-2">
-            Janga, Cal, Luke Bray, and Haley — Colorado Space Grant Robotics Competition team.
+            Janga, Cal, Luke Bray, and Haley: Colorado Space Grant Robotics Competition team.
           </Text>
           <Text className="text-neutral-400 text-xl">
             Frame design based on markwtech&apos;s open-source hexapod, adapted from the Trossen PhantomX.
