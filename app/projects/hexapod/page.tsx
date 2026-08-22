@@ -39,19 +39,19 @@ export default function HexapodPage() {
         {/* ── HEADER ─────────────────────────────────────────── */}
         <header className="mb-24 border-b border-amber-900/50 pb-12">
           <div className="flex items-center gap-4 mb-6">
-            <Mono color="amber" className="opacity-70">
+            <Mono color="amber">
               REF-03 // HEXAPOD
             </Mono>
-            <span className="text-neutral-700">|</span>
-            <Mono className="text-neutral-600 text-xs">NASA LUNABOTICS 2026</Mono>
+            <span className="text-neutral-500">|</span>
+            <Mono className="text-neutral-400 text-sm">NASA LUNABOTICS 2026</Mono>
           </div>
 
           <Heading variant="h1" className="text-5xl md:text-7xl mb-6">
             Adaptive Hexapod: <br/>
-            <Text as="span" className="text-neutral-500 font-bold">CPG Locomotion Engine</Text>
+            <span className="text-neutral-300 font-bold tracking-normal">CPG Locomotion Engine</span>
           </Heading>
 
-          <Text className="text-xl md:text-2xl text-amber-500/90 font-mono leading-relaxed max-w-2xl">
+          <Text className="text-xl md:text-2xl text-amber-300 font-mono leading-relaxed max-w-2xl">
             "Wheels fail where the ground fights back. To explore the lunar surface, we had to reinvent the step."
           </Text>
 
@@ -65,7 +65,7 @@ export default function HexapodPage() {
             ].map(({ val, label }) => (
               <div key={label} className="border border-amber-900/30 bg-neutral-950/60 p-4 rounded">
                 <div className="text-2xl font-bold text-amber-400 font-mono">{val}</div>
-                <Mono className="text-neutral-500 text-xs mt-1">{label}</Mono>
+                <Mono className="text-neutral-300 text-sm mt-1">{label}</Mono>
               </div>
             ))}
           </div>
@@ -74,7 +74,7 @@ export default function HexapodPage() {
         {/* ── 01 TERRAIN ─────────────────────────────────────── */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">01__TERRAIN</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">01__TERRAIN</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">The Regolith Problem</Heading>
@@ -90,12 +90,12 @@ export default function HexapodPage() {
         {/* ── 02 MEDIA ───────────────────────────────────────── */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">02__MEDIA</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">02__MEDIA</Mono>
           </div>
           <div className="space-y-6">
             {/* Robot Photo */}
             <div>
-              <Mono color="amber" className="mb-3 block text-xs">// HARDWARE — markwtech frame // MG996R × 18 // PLA + TPU</Mono>
+              <Mono color="amber" className="mb-3 block text-sm">// HARDWARE — markwtech frame // MG996R × 18 // PLA + TPU</Mono>
               <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-amber-900/40 bg-neutral-950">
                 <img
                   src={ROBOT_PHOTO_SRC}
@@ -116,13 +116,13 @@ export default function HexapodPage() {
                   <div className="w-16 h-16 border-2 border-amber-900/40 rounded-full flex items-center justify-center">
                     <Mono className="text-amber-900/60 text-xl">📷</Mono>
                   </div>
-                  <Mono className="text-neutral-700 text-xs">// photo pending — update ROBOT_PHOTO_SRC</Mono>
+                  <Mono className="text-neutral-500 text-sm">// photo pending — update ROBOT_PHOTO_SRC</Mono>
                 </div>
                 {/* Scanlines */}
                 <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(245,158,11,0.015)_2px,rgba(245,158,11,0.015)_4px)] rounded-lg" />
                 <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="pointer-events-none absolute bottom-3 left-4">
-                  <Mono className="text-amber-500/60 text-xs">markwtech frame // 624Z bearings × 18 // 4-40 fasteners // PLA 30% infill</Mono>
+                  <Mono className="text-amber-300 text-sm">markwtech frame // 624Z bearings × 18 // 4-40 fasteners // PLA 30% infill</Mono>
                 </div>
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function HexapodPage() {
         {/* ── 03 KINEMATICS ──────────────────────────────────── */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">03__KINEMATICS</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">03__KINEMATICS</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">Inverse Kinematics (IK)</Heading>
@@ -164,7 +164,7 @@ export default function HexapodPage() {
         {/* ── 04 CPG ─────────────────────────────────────────── */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">04__CPG</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">04__CPG</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">Central Pattern Generator</Heading>
@@ -177,11 +177,11 @@ export default function HexapodPage() {
 
             {/* CPG equation */}
             <div className="bg-neutral-950 border border-neutral-800 p-6 rounded-lg mb-6 font-mono text-sm overflow-x-auto">
-              <Mono color="amber" className="block mb-3 text-xs">// KURAMOTO COUPLED OSCILLATORS</Mono>
+              <Mono color="amber" className="block mb-3 text-sm">// KURAMOTO COUPLED OSCILLATORS</Mono>
               <div className="text-green-400 space-y-1">
                 <div>dφᵢ/dt = <span className="text-amber-400">ω</span> + Σⱼ <span className="text-amber-400">Kᵢⱼ</span> · sin(φⱼ − φᵢ − <span className="text-amber-400">θᵢⱼ</span>)</div>
               </div>
-              <div className="mt-4 space-y-1 text-neutral-500 text-xs">
+              <div className="mt-4 space-y-1 text-neutral-300 text-sm">
                 <div><span className="text-neutral-300">φᵢ</span>   — oscillator phase, leg i ∈ [0, 2π)</div>
                 <div><span className="text-neutral-300">ω</span>    — natural frequency  →  controls speed + gait type</div>
                 <div><span className="text-neutral-300">Kᵢⱼ</span>  — coupling strength between legs i and j</div>
@@ -194,10 +194,10 @@ export default function HexapodPage() {
               <table className="w-full text-sm border-collapse">
                 <thead>
                   <tr className="border-b border-amber-900/30">
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-500 text-xs">ω (rad/s)</Mono></th>
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-500 text-xs">GAIT</Mono></th>
-                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-500 text-xs">LEGS DOWN</Mono></th>
-                    <th className="text-left py-2"><Mono className="text-neutral-500 text-xs">USE CASE</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-300 text-sm">ω (rad/s)</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-300 text-sm">GAIT</Mono></th>
+                    <th className="text-left py-2 pr-6"><Mono className="text-neutral-300 text-sm">LEGS DOWN</Mono></th>
+                    <th className="text-left py-2"><Mono className="text-neutral-300 text-sm">USE CASE</Mono></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-neutral-900">
@@ -210,7 +210,7 @@ export default function HexapodPage() {
                       <td className="py-3 pr-6"><Mono className="text-amber-400">{omega}</Mono></td>
                       <td className="py-3 pr-6"><Text className="text-white font-semibold">{gait}</Text></td>
                       <td className="py-3 pr-6"><Mono className="text-neutral-300">{legs}</Mono></td>
-                      <td className="py-3"><Text className="text-neutral-500 text-sm">{use}</Text></td>
+                      <td className="py-3"><Text className="text-neutral-300 text-sm">{use}</Text></td>
                     </tr>
                   ))}
                 </tbody>
@@ -229,7 +229,7 @@ export default function HexapodPage() {
         {/* ── 05 SENSOR SUITE ────────────────────────────────── */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">05__SENSORS</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">05__SENSORS</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-6">Terrain Sensor Suite</Heading>
@@ -279,20 +279,20 @@ export default function HexapodPage() {
                 >
                   <div className="flex items-start justify-between gap-4 mb-3 flex-wrap">
                     <div className="flex items-center gap-3">
-                      <Mono color="amber" className="text-xs opacity-60">{id}</Mono>
+                      <Mono color="amber" className="text-sm">{id}</Mono>
                       <Text className="text-white font-semibold">{name}</Text>
                     </div>
                     <div className="flex items-center gap-3 flex-shrink-0">
-                      <span className="text-xs border border-amber-900/40 text-amber-600/70 px-2 py-0.5 rounded font-mono">
+                      <span className="text-sm border border-amber-900/40 text-amber-400 px-2 py-0.5 rounded font-mono">
                         {target}
                       </span>
-                      <Mono className="text-neutral-600 text-xs">{cost}</Mono>
+                      <Mono className="text-neutral-400 text-sm">{cost}</Mono>
                     </div>
                   </div>
                   <Text className="text-neutral-400 text-sm mb-3">{desc}</Text>
                   <div className="flex items-center gap-2">
                     <span className="w-1 h-1 rounded-full bg-amber-500 flex-shrink-0" />
-                    <Mono className="text-neutral-600 text-xs">{integration}</Mono>
+                    <Mono className="text-neutral-400 text-sm">{integration}</Mono>
                   </div>
                 </div>
               ))}
@@ -303,11 +303,11 @@ export default function HexapodPage() {
         {/* ── 06 MECHANICAL ──────────────────────────────────── */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">06__MECH</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">06__MECH</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-2">Frame Replacement</Heading>
-            <Mono color="amber" className="text-xs mb-6 block">
+            <Mono color="amber" className="text-sm mb-6 block">
               FutureTrace kit → markwtech 3D-printed frame
             </Mono>
 
@@ -324,23 +324,23 @@ export default function HexapodPage() {
             {/* Before / After */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               <div className="border border-neutral-800 rounded-lg p-5 bg-neutral-950/60">
-                <Mono className="text-red-500/70 text-xs mb-3 block">// BEFORE — FutureTrace kit</Mono>
-                <div className="font-mono text-xs text-neutral-500 space-y-1 mb-4">
+                <Mono className="text-red-400 text-sm mb-3 block">// BEFORE — FutureTrace kit</Mono>
+                <div className="font-mono text-sm text-neutral-300 space-y-1 mb-4">
                   <div>servo ──[bushing]──horn──── leg</div>
-                  <div className="text-red-500/50">{'             ↑ all load here'}</div>
+                  <div className="text-red-400">{'             ↑ all load here'}</div>
                 </div>
-                <Text className="text-neutral-500 text-sm">
+                <Text className="text-neutral-300 text-sm">
                   Single cantilevered bushing. Radial load grinds it out in hours.
                   Output drifts ±3–5° from commanded angle. Gait becomes unreliable on sand.
                 </Text>
               </div>
               <div className="border border-amber-900/40 rounded-lg p-5 bg-neutral-950/60">
-                <Mono className="text-green-500/70 text-xs mb-3 block">// AFTER — markwtech frame</Mono>
-                <div className="font-mono text-xs text-neutral-500 space-y-1 mb-4">
+                <Mono className="text-green-400 text-sm mb-3 block">// AFTER — markwtech frame</Mono>
+                <div className="font-mono text-sm text-neutral-300 space-y-1 mb-4">
                   <div>servo ──[<span className="text-amber-400">624Z</span>]──horn──── leg ────[<span className="text-amber-400">624Z</span>]── mount</div>
-                  <div className="text-green-500/50">{'      ↑ shared                     ↑ shared'}</div>
+                  <div className="text-green-400">{'      ↑ shared                     ↑ shared'}</div>
                 </div>
-                <Text className="text-neutral-500 text-sm">
+                <Text className="text-neutral-300 text-sm">
                   Dual 624Z bearings built into every servo mount. Servo outputs pure torque.
                   All radial load carried by the printed frame. Sub-degree positioning throughout.
                 </Text>
@@ -349,7 +349,7 @@ export default function HexapodPage() {
 
             {/* Why markwtech specifically */}
             <div className="bg-neutral-900/50 border border-amber-900/30 p-5 rounded-lg mb-6">
-              <Mono color="amber" className="mb-3 block text-xs">// WHY THIS FRAME</Mono>
+              <Mono color="amber" className="mb-3 block text-sm">// WHY THIS FRAME</Mono>
               <Text className="text-neutral-400 text-sm mb-4">
                 The markwtech hexapod (inspired by the Trossen PhantomX, designed for MG996R-class
                 servos) solves the shear problem at the design level — not as a retrofit. Every one
@@ -376,7 +376,7 @@ export default function HexapodPage() {
 
             {/* Print parts list */}
             <div className="border border-neutral-800 rounded-lg p-5 bg-neutral-950/40">
-              <Mono className="text-neutral-500 text-xs mb-4 block">// PRINTED PARTS MANIFEST</Mono>
+              <Mono className="text-neutral-300 text-sm mb-4 block">// PRINTED PARTS MANIFEST</Mono>
               <div className="grid grid-cols-2 gap-x-8 gap-y-1.5">
                 {[
                   ['1×', 'Body bottom plate'],
@@ -395,8 +395,8 @@ export default function HexapodPage() {
                   ['6×', 'Wire guides'],
                 ].map(([qty, part]) => (
                   <div key={part} className="flex items-baseline gap-2">
-                    <Mono className="text-amber-600/60 text-xs w-6 flex-shrink-0">{qty}</Mono>
-                    <Text className="text-neutral-500 text-xs">{part}</Text>
+                    <Mono className="text-amber-400 text-sm w-6 flex-shrink-0">{qty}</Mono>
+                    <Text className="text-neutral-300 text-sm">{part}</Text>
                   </div>
                 ))}
               </div>
@@ -407,7 +407,7 @@ export default function HexapodPage() {
         {/* ── 07 TIMING ──────────────────────────────────────── */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">07__TIMING</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">07__TIMING</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-6">Control Loop Budget</Heading>
@@ -430,7 +430,7 @@ export default function HexapodPage() {
               ].map(({ label, ms, total, color }) => (
                 <div key={label} className="flex items-center gap-4">
                   <div className="w-44 flex-shrink-0">
-                    <Mono className="text-neutral-500 text-xs">{label}</Mono>
+                    <Mono className="text-neutral-300 text-sm">{label}</Mono>
                   </div>
                   <div className="flex-1 h-2 bg-neutral-900 rounded-full overflow-hidden">
                     <div
@@ -438,12 +438,12 @@ export default function HexapodPage() {
                       style={{ width: `${(ms / total) * 100}%` }}
                     />
                   </div>
-                  <Mono className="text-neutral-400 text-xs w-10 text-right">{ms}ms</Mono>
+                  <Mono className="text-neutral-400 text-sm w-10 text-right">{ms}ms</Mono>
                 </div>
               ))}
             </div>
 
-            <Text className="text-neutral-500 text-sm">
+            <Text className="text-neutral-300 text-sm">
               Total used: ~8.4ms of 25ms available. 16.6ms headroom reserved for sensor
               fusion algorithms and future expansion.
             </Text>
@@ -452,7 +452,7 @@ export default function HexapodPage() {
 
         {/* ── FOOTER ─────────────────────────────────────────── */}
         <footer className="border-t border-neutral-800 pt-12 mt-20">
-          <Mono className="text-neutral-500 mb-6 block">System Architecture</Mono>
+          <Mono className="text-neutral-300 mb-6 block">System Architecture</Mono>
           <div className="flex flex-wrap gap-3">
             {[
               'C++', 'Python', 'Embedded Systems', 'Inverse Kinematics',

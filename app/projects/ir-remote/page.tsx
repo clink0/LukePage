@@ -8,7 +8,7 @@ import { Heading, Text, Mono } from '@/components/ui/Typography';
 const PROTOTYPE_TEST_SRC = '/media/ir-remote/prototype-test.jpg';
 const PCB_LAYOUT_SRC     = '/media/ir-remote/pcb-layout.png';
 const SCHEMATIC_SRC      = '/media/ir-remote/schematic.png';
-const DEMO_VIDEO_ID      = 'SBVHGycFA4A';
+const DEMO_VIDEO_ID      = 'rWdcN8Ynb7w';
 // ─────────────────────────────────────────────────────────────
 
 function MediaFrame({
@@ -24,7 +24,7 @@ function MediaFrame({
     <div className="rounded-lg overflow-hidden border border-green-900/40 bg-white p-2 mb-3">
       <img src={src} alt={alt} className="w-full h-auto" />
       {caption && (
-        <Mono className="text-green-400 text-xs block text-center mt-2">{caption}</Mono>
+        <Mono className="text-green-400 text-sm block text-center mt-2">{caption}</Mono>
       )}
     </div>
   );
@@ -57,7 +57,7 @@ export default function IRRemotePage() {
         {/* Header Section */}
         <header className="mb-24 border-b border-green-900/50 pb-12">
           <div className="flex items-center gap-4 mb-6">
-            <Mono color="green" className="opacity-70">
+            <Mono color="green">
               REF-04 // IR CONTROL
             </Mono>
           </div>
@@ -67,7 +67,7 @@ export default function IRRemotePage() {
             <span className="text-neutral-300 font-bold tracking-normal">IR Control System</span>
           </Heading>
           
-          <Text className="text-xl md:text-2xl text-green-400/90 font-mono leading-relaxed max-w-2xl">
+          <Text className="text-xl md:text-2xl text-green-300 font-mono leading-relaxed max-w-2xl">
             Replacing plastic junk with a custom-engineered, lithium-powered ATmega2560 command module.
           </Text>
         </header>
@@ -75,7 +75,7 @@ export default function IRRemotePage() {
         {/* The Prototype Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">01__PROTOTYPE</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">01__PROTOTYPE</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">Proof of Concept</Heading>
@@ -98,7 +98,7 @@ export default function IRRemotePage() {
         {/* The Hardware Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">02__HARDWARE</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">02__HARDWARE</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">Custom PCB Design</Heading>
@@ -139,13 +139,13 @@ export default function IRRemotePage() {
         {/* The Firmware Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">03__FIRMWARE</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">03__FIRMWARE</Mono>
           </div>
           
           <div className="min-w-0">
             <Heading variant="h3" className="mb-4">Interrupt-Driven Architecture</Heading>
             <Text className="text-neutral-400 mb-6">
-              To ensure zero latency, I bypassed the standard Arduino <Mono variant="code" className="text-xs">loop()</Mono> polling for the keypad. Instead, I configured <strong className="text-white">Timer 1</strong> to trigger an Interrupt Service Routine (ISR) at exactly 50Hz.
+              To ensure zero latency, I bypassed the standard Arduino <Mono variant="code" className="text-sm">loop()</Mono> polling for the keypad. Instead, I configured <strong className="text-white">Timer 1</strong> to trigger an Interrupt Service Routine (ISR) at exactly 50Hz.
             </Text>
 
             {/* Code Block */}
@@ -185,12 +185,12 @@ export default function IRRemotePage() {
         {/* The Protocol Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">04__PROTOCOL</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">04__PROTOCOL</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-6">Samsung IR Integration</Heading>
             <Text className="text-neutral-400 mb-6">
-                The system utilizes the <Mono variant="code" className="text-xs">IRremote.hpp</Mono> library to modulate the 38kHz carrier wave required by Samsung televisions.
+                The system utilizes the <Mono variant="code" className="text-sm">IRremote.hpp</Mono> library to modulate the 38kHz carrier wave required by Samsung televisions.
             </Text>
             <div className="mt-6 flex flex-col gap-2">
                 <div className="flex items-center gap-4 border-b border-neutral-800 pb-2">
@@ -212,7 +212,7 @@ export default function IRRemotePage() {
         {/* The Demo Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">05__FINAL BUILD</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">05__FINAL BUILD</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">v2 in Daily Use</Heading>
@@ -241,7 +241,7 @@ export default function IRRemotePage() {
 
         {/* Footer / Tech Stack */}
         <footer className="border-t border-neutral-800 pt-12 mt-20">
-          <Mono className="text-neutral-500 mb-6 block">Stack & Components</Mono>
+          <Mono className="text-neutral-300 mb-6 block">Stack & Components</Mono>
           <div className="flex flex-wrap gap-3">
             {['ATmega2560', 'C++', 'PlatformIO', 'KiCad', 'IR Protocol', 'Power Electronics'].map((tech) => (
               <Mono 

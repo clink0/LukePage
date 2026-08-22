@@ -31,17 +31,17 @@ export default function UnderwaterCamPage() {
         {/* Header Section */}
         <header className="mb-24 border-b border-cyan-900/50 pb-12">
           <div className="flex items-center gap-4 mb-6">
-            <Mono color="cyan" className="opacity-70">
+            <Mono color="cyan">
               REF-02 // MARINE SURV
             </Mono>
           </div>
           
           <Heading variant="h1" className="text-5xl md:text-7xl mb-6">
             Acoustic-Triggered <br/>
-            <Text as="span" className="text-neutral-500 font-bold">Marine Surveillance Module</Text>
+            <span className="text-neutral-300 font-bold tracking-normal">Marine Surveillance Module</span>
           </Heading>
           
-          <Text className="text-xl md:text-2xl text-cyan-400/90 font-mono leading-relaxed max-w-2xl">
+          <Text className="text-xl md:text-2xl text-cyan-300 font-mono leading-relaxed max-w-2xl">
             Solving the blind spot in ropeless fishing to protect whale migration corridors.
           </Text>
         </header>
@@ -49,7 +49,7 @@ export default function UnderwaterCamPage() {
         {/* The Problem Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">01__CONFLICT</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">01__CONFLICT</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">The Whale Migration Crisis</Heading>
@@ -66,7 +66,7 @@ export default function UnderwaterCamPage() {
         {/* The Solution Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">02__MECHANIC</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">02__MECHANIC</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-4">SubSea Sonics & The Acoustic Trigger</Heading>
@@ -87,7 +87,7 @@ export default function UnderwaterCamPage() {
         {/* The Engineering Section */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-600 block sticky top-32">03__PAYLOAD</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">03__PAYLOAD</Mono>
           </div>
           <div>
             <Heading variant="h3" className="mb-6">The Acoustic Camera Module</Heading>
@@ -114,7 +114,7 @@ export default function UnderwaterCamPage() {
 
         {/* Footer / Tech Stack */}
         <footer className="border-t border-neutral-800 pt-12 mt-20">
-          <Mono className="text-neutral-500 mb-6 block">Mission Hardware</Mono>
+          <Mono className="text-neutral-300 mb-6 block">Mission Hardware</Mono>
           <div className="flex flex-wrap gap-3">
             {['Raspberry Pi Zero', 'Python', 'OpenCV', 'Hydrophone', 'Power Management', 'CAD/Fusion 360'].map((tech) => (
               <Mono 
