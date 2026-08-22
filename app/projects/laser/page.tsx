@@ -137,11 +137,14 @@ export default function LaserPage() {
 
             <div className="bg-neutral-900/50 border border-rose-900/30 p-5 rounded-lg mb-6">
               <Mono color="red" className="mb-3 block text-xs">// CONCEPT OF OPERATIONS</Mono>
-              <MediaFrame
-                src={CONCEPT_OPS_SRC}
-                alt="Concept of operations diagram: LiDAR captures data on rotating space debris, data is stored and sent to a processing system, which converts, visualizes, and estimates rotation and size."
-                caption="Fig. 2 — Concept of Operations"
-              />
+              <div className="max-w-xs mx-auto rounded-lg overflow-hidden border border-rose-900/40 bg-white">
+                <img
+                  src={CONCEPT_OPS_SRC}
+                  alt="Concept of operations diagram: LiDAR captures data on rotating space debris, data is stored and sent to a processing system, which converts, visualizes, and estimates rotation and size."
+                  className="w-full h-auto"
+                />
+              </div>
+              <Mono className="text-rose-500/70 text-xs block text-center mt-2">Fig. 2 — Concept of Operations</Mono>
             </div>
 
             <Text className="text-neutral-400">
