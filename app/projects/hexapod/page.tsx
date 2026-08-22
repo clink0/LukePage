@@ -5,12 +5,81 @@ import HexapodBackground from '@/components/HexapodBackground';
 import { Heading, Text, Mono } from '@/components/ui/Typography';
 
 // ─── MEDIA CONFIG ────────────────────────────────────────────
-// Replace these paths with your actual files once you have them.
-// For video: drop your .mp4 into /public/media/ and update the path.
-// For photo: drop your image into /public/media/ and update the path.
-const ROBOT_PHOTO_SRC      = '/media/hexapod-robot.jpg';
-const ROBOT_PHOTO_ALT      = 'markwtech 3D-printed hexapod robot with 624Z dual-bearing joints on Martian regolith test surface';
+const MWTECH_MODEL_SRC = '/media/hexapod/mwtech-3d-model.png';
+const BUILT_ROBOT_SRC  = '/media/hexapod/built-robot.jpg';
+const DUNES_MORNING_SRC = '/media/hexapod/dunes-morning.jpg';
+const COURSE_RUN_SRC   = '/media/hexapod/course-run.jpg';
+const TEAM_PHOTO_SRC   = '/media/hexapod/team-photo.jpg';
+
+const FIRST_LEG_VIDEO_ID     = 'dVvIcy9fosA';
+const FIRST_STEPS_VIDEO_ID   = '4lkkmAWNKkA';
+const FAILED_COURSES_VIDEO_ID = 'yPovUUTLEn4';
+const DANCE_VIDEO_ID         = 'fvnBJrQA3wc';
 // ─────────────────────────────────────────────────────────────
+
+function MediaFrame({
+  src,
+  alt,
+  caption,
+}: {
+  src: string;
+  alt: string;
+  caption: string;
+}) {
+  return (
+    <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-amber-900/40 bg-neutral-950">
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover"
+        onError={(e) => {
+          (e.currentTarget as HTMLImageElement).style.display = 'none';
+          const next = e.currentTarget.nextElementSibling as HTMLElement | null;
+          if (next) next.style.display = 'flex';
+        }}
+      />
+      <div
+        className="absolute inset-0 hidden items-center justify-center flex-col gap-3 bg-neutral-950"
+        style={{ display: 'none' }}
+      >
+        <div className="w-16 h-16 border-2 border-amber-900/40 rounded-full flex items-center justify-center">
+          <Mono className="text-amber-900/60 text-xl">📷</Mono>
+        </div>
+        <Mono className="text-neutral-500 text-sm">// image pending</Mono>
+      </div>
+      <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(245,158,11,0.015)_2px,rgba(245,158,11,0.015)_4px)] rounded-lg" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-black/70 to-transparent" />
+      <div className="pointer-events-none absolute bottom-3 left-4">
+        <Mono className="text-amber-300 text-sm">{caption}</Mono>
+      </div>
+    </div>
+  );
+}
+
+function VideoFrame({
+  videoId,
+  title,
+  caption,
+}: {
+  videoId: string;
+  title: string;
+  caption: string;
+}) {
+  return (
+    <div>
+      <div className="relative w-full max-w-[280px] mx-auto aspect-[9/16] rounded-lg overflow-hidden border border-amber-900/40 bg-neutral-950">
+        <iframe
+          className="w-full h-full"
+          src={`https://www.youtube.com/embed/${videoId}`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+      <Mono className="text-amber-300 text-sm block text-center mt-2">{caption}</Mono>
+    </div>
+  );
+}
 
 export default function HexapodPage() {
   return (
@@ -38,12 +107,12 @@ export default function HexapodPage() {
 
         {/* ── HEADER ─────────────────────────────────────────── */}
         <header className="mb-24 border-b border-amber-900/50 pb-12">
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center gap-4 mb-6 flex-wrap">
             <Mono color="amber">
               REF-03 // HEXAPOD
             </Mono>
             <span className="text-neutral-500">|</span>
-            <Mono className="text-neutral-400 text-sm">NASA LUNABOTICS 2026</Mono>
+            <Mono className="text-neutral-400 text-sm">COLORADO SPACE GRANT ROBOTICS COMPETITION</Mono>
           </div>
 
           <Heading variant="h1" className="text-5xl md:text-7xl mb-6">
@@ -52,7 +121,7 @@ export default function HexapodPage() {
           </Heading>
 
           <Text className="text-xl md:text-2xl text-amber-300 font-mono leading-relaxed max-w-2xl">
-            "Wheels fail where the ground fights back. To explore the lunar surface, we had to reinvent the step."
+            A six-legged, 18-servo walker built to cross terrain wheels can&apos;t — raced (and danced) at the Great Sand Dunes.
           </Text>
 
           {/* Stat bar */}
@@ -60,8 +129,8 @@ export default function HexapodPage() {
             {[
               { val: '18',   label: 'DOF' },
               { val: '40Hz', label: 'Control Loop' },
-              { val: '3',    label: 'Emergent Gaits' },
-              { val: '6',    label: 'Oscillators' },
+              { val: '9-DOF', label: 'IMU' },
+              { val: '2',    label: 'Bump Sensors' },
             ].map(({ val, label }) => (
               <div key={label} className="border border-amber-900/30 bg-neutral-950/60 p-4 rounded">
                 <div className="text-2xl font-bold text-amber-400 font-mono">{val}</div>
@@ -79,54 +148,64 @@ export default function HexapodPage() {
           <div>
             <Heading variant="h3" className="mb-4">The Regolith Problem</Heading>
             <Text className="text-neutral-400 mb-4">
-              NASA's Lunabotics competition challenges engineers to navigate a simulated lunar surface. The loose, granular regolith is a nightmare for traditional rovers — wheels spin out, dig holes, and get stuck.
+              Loose, granular regolith — the kind NASA&apos;s Lunabotics competition simulates and the kind that covers the Great Sand Dunes — is a nightmare for traditional rovers. Wheels spin out, dig holes, and get stuck.
             </Text>
             <Text className="text-neutral-400">
-              To guarantee traversal over boulders and craters, I abandoned wheels entirely. I designed a <strong className="text-white">six-legged hexapod</strong> capable of stepping over obstacles rather than rolling through them. Each foot can probe for stable ground independently — something no wheel can do.
+              To guarantee traversal over that terrain, I abandoned wheels entirely and designed a <strong className="text-white">six-legged hexapod</strong> capable of stepping over loose sand rather than rolling through it. The real proving ground ended up being the <strong className="text-white">Colorado Space Grant Robotics Competition</strong>, held right on the dunes.
             </Text>
           </div>
         </section>
 
-        {/* ── 02 MEDIA ───────────────────────────────────────── */}
+        {/* ── 02 ORIGIN ──────────────────────────────────────── */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-400 block sticky top-32">02__MEDIA</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">02__ORIGIN</Mono>
           </div>
-          <div className="space-y-6">
-            {/* Robot Photo */}
+          <div className="space-y-8">
             <div>
-              <Mono color="amber" className="mb-3 block text-sm">// HARDWARE — markwtech frame // MG996R × 18 // PLA + TPU</Mono>
-              <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-amber-900/40 bg-neutral-950">
-                <img
-                  src={ROBOT_PHOTO_SRC}
-                  alt={ROBOT_PHOTO_ALT}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    // Show placeholder if image not found
-                    (e.currentTarget as HTMLImageElement).style.display = 'none';
-                    const next = e.currentTarget.nextElementSibling as HTMLElement | null;
-                    if (next) next.style.display = 'flex';
-                  }}
-                />
-                {/* Placeholder shown if image missing */}
-                <div
-                  className="absolute inset-0 hidden items-center justify-center flex-col gap-3 bg-neutral-950"
-                  style={{ display: 'none' }}
-                >
-                  <div className="w-16 h-16 border-2 border-amber-900/40 rounded-full flex items-center justify-center">
-                    <Mono className="text-amber-900/60 text-xl">📷</Mono>
-                  </div>
-                  <Mono className="text-neutral-500 text-sm">// photo pending — update ROBOT_PHOTO_SRC</Mono>
-                </div>
-                {/* Scanlines */}
-                <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(245,158,11,0.015)_2px,rgba(245,158,11,0.015)_4px)] rounded-lg" />
-                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="pointer-events-none absolute bottom-3 left-4">
-                  <Mono className="text-amber-300 text-sm">markwtech frame // 624Z bearings × 18 // 4-40 fasteners // PLA 30% infill</Mono>
-                </div>
-              </div>
+              <Heading variant="h3" className="mb-4">Standing on markwtech&apos;s Shoulders</Heading>
+              <Text className="text-neutral-400 mb-6">
+                Rather than design a hexapod frame from scratch, we started from markwtech&apos;s open-source hexapod design — the 3D model below — and built, wired, and reprogrammed our own unit on top of it, later reworking the servo mounts ourselves (see <Mono variant="code" color="amber">06__MECH</Mono>).
+              </Text>
+              <MediaFrame
+                src={MWTECH_MODEL_SRC}
+                alt="markwtech open-source hexapod 3D model — six-legged frame with 18 servos and central microcontroller mount, used as the base design"
+                caption="markwtech reference 3D model — our starting point"
+              />
             </div>
 
+            <div>
+              <Text className="text-neutral-400 mb-4">
+                Bring-up went leg by leg. Here&apos;s the first leg wired up and moving under our own firmware, before the rest of the frame was even assembled.
+              </Text>
+              <VideoFrame
+                videoId={FIRST_LEG_VIDEO_ID}
+                title="First hexapod leg built and working"
+                caption="First leg — built and moving"
+              />
+            </div>
+
+            <div>
+              <Text className="text-neutral-400 mb-4">
+                All six legs assembled, wired, and mounted to the central Arduino Mega controller — fully built for the first time.
+              </Text>
+              <MediaFrame
+                src={BUILT_ROBOT_SRC}
+                alt="Fully assembled hexapod robot with all six legs, servos, and central Arduino Mega controller, resting on a wooden workbench"
+                caption="Fully assembled — all 18 servos wired"
+              />
+            </div>
+
+            <div>
+              <Text className="text-neutral-400 mb-4">
+                And its first steps under its own power.
+              </Text>
+              <VideoFrame
+                videoId={FIRST_STEPS_VIDEO_ID}
+                title="Hexapod's first steps"
+                caption="First steps"
+              />
+            </div>
           </div>
         </section>
 
@@ -157,6 +236,8 @@ export default function HexapodPage() {
             <Text className="text-neutral-400">
               The same IK math was independently ported to Python for simulation, where phase-plane
               visualization confirmed the geometric approach matched the firmware to floating-point precision.
+              This IK engine is what both the CPG research below and the simpler gait that actually raced
+              (05__GAIT) are built on top of.
             </Text>
           </div>
         </section>
@@ -168,11 +249,20 @@ export default function HexapodPage() {
           </div>
           <div>
             <Heading variant="h3" className="mb-4">Central Pattern Generator</Heading>
+            <div className="bg-neutral-900/50 border border-amber-900/30 p-4 rounded-lg mb-6">
+              <Mono color="amber" className="mb-2 block text-sm">// R&D, NOT WHAT RACED</Mono>
+              <Text className="text-neutral-300 text-sm">
+                This is real, completed work — designed, coded, and validated in simulation — not vaporware.
+                But coordinating six independently-driven oscillators in firmware turned out to be its own
+                project, and with competition day approaching we shipped a simpler, proven gait instead
+                (see <Mono variant="code" color="amber">05__GAIT</Mono>). This section is what we built toward, not what raced.
+              </Text>
+            </div>
             <Text className="text-neutral-400 mb-6">
               Real insects don't compute gait keyframes — their spinal cord runs a self-organizing
               oscillator network called a <strong className="text-white">Central Pattern Generator</strong>.
               The brain sends one signal ("walk faster"), and the CPG handles all inter-leg coordination
-              automatically. I implemented the same architecture.
+              automatically. I designed the same architecture for this robot.
             </Text>
 
             {/* CPG equation */}
@@ -221,81 +311,44 @@ export default function HexapodPage() {
               The key insight: gait type is not a mode switch. It is a{' '}
               <strong className="text-white">continuous function of ω</strong>. Change one number,
               and the wave→ripple→tripod transition emerges from the coupling dynamics automatically.
-              No state machine. No hard-coded offsets.
+              No state machine. No hard-coded offsets. The fixed tripod gait that actually raced is the
+              ω≈5.0 row of this table, hard-coded instead of emergent.
             </Text>
           </div>
         </section>
 
-        {/* ── 05 SENSOR SUITE ────────────────────────────────── */}
+        {/* ── 05 GAIT & RECOVERY ─────────────────────────────── */}
         <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
           <div className="text-right hidden md:block">
-            <Mono className="text-neutral-400 block sticky top-32">05__SENSORS</Mono>
+            <Mono className="text-neutral-400 block sticky top-32">05__GAIT</Mono>
           </div>
           <div>
-            <Heading variant="h3" className="mb-6">Terrain Sensor Suite</Heading>
-            <Text className="text-neutral-400 mb-8">
-              Each sensor feeds directly back into the CPG parameters — not a simple stop/turn
-              interrupt, but a continuous modulation of oscillator frequency, duty factor, and
-              step height. The robot's gait adapts in real time to what it's actually experiencing.
+            <Heading variant="h3" className="mb-6">What Actually Raced</Heading>
+            <Text className="text-neutral-400 mb-6">
+              With the CPG unfinished, the fielded robot ran a <strong className="text-white">fixed tripod
+              gait</strong> adapted from markwtech&apos;s reference code — three legs down at all times,
+              simple and proven — driven through our own IK engine. Obstacle handling was a straightforward
+              bump-and-recover loop instead of continuous sensor fusion:
             </Text>
-            <div className="space-y-4">
-              {[
-                {
-                  id: 'S1',
-                  name: 'MPU-6050 IMU',
-                  target: 'Sand / Tilt',
-                  desc: 'Body roll, pitch, and yaw at 40Hz. Feeds body height compensation and asymmetric stance adjustments on inclines.',
-                  integration: 'ω reduction on tilt > 8°',
-                  cost: '~$5',
-                },
-                {
-                  id: 'S2',
-                  name: '6× Foot Contact Switches',
-                  target: 'Sand / Sinking',
-                  desc: 'Microswitches at each tibia tip trigger CPG phase-reset on touchdown — the robot re-syncs gait to actual ground contact rather than predicted contact. Biological insects use the same mechanism.',
-                  integration: 'Phase reset: φᵢ → 0 on contact',
-                  cost: '~$5',
-                },
-                {
-                  id: 'S3',
-                  name: '3× IR Range (GP2Y0A21)',
-                  target: 'Holes / Voids',
-                  desc: 'Front-facing downward IR sensors detect sudden loss of ground return — indicating a crater or drop edge. Triggers hard stop and reroute.',
-                  integration: 'Hard stop → reverse → turn',
-                  cost: '~$9',
-                },
-                {
-                  id: 'S4',
-                  name: '3× HC-SR04 Ultrasonic',
-                  target: 'Rocks / Obstacles',
-                  desc: 'Forward-facing sonar detects surface obstacles at 2–400cm. Detection increases ω (wave gait) and STEP_HEIGHT for clearance, resolving smaller rocks without stopping.',
-                  integration: 'ω ↑ + step height ↑ on detection',
-                  cost: '~$5',
-                },
-              ].map(({ id, name, target, desc, integration, cost }) => (
-                <div
-                  key={id}
-                  className="border border-neutral-800 hover:border-amber-900/60 bg-neutral-950/40 hover:bg-neutral-900/40 rounded-lg p-5 transition-all duration-200"
-                >
-                  <div className="flex items-start justify-between gap-4 mb-3 flex-wrap">
-                    <div className="flex items-center gap-3">
-                      <Mono color="amber" className="text-sm">{id}</Mono>
-                      <Text className="text-white font-semibold">{name}</Text>
-                    </div>
-                    <div className="flex items-center gap-3 flex-shrink-0">
-                      <span className="text-sm border border-amber-900/40 text-amber-400 px-2 py-0.5 rounded font-mono">
-                        {target}
-                      </span>
-                      <Mono className="text-neutral-400 text-sm">{cost}</Mono>
-                    </div>
-                  </div>
-                  <Text className="text-neutral-400 text-sm mb-3">{desc}</Text>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-amber-500 flex-shrink-0" />
-                    <Mono className="text-neutral-400 text-sm">{integration}</Mono>
-                  </div>
-                </div>
-              ))}
+
+            <div className="bg-neutral-950 border border-neutral-800 p-5 rounded-lg mb-6 font-mono text-sm space-y-2">
+              <div><span className="text-amber-400">FRONT-LEFT bumper hit</span>  →  turn right  →  resume forward</div>
+              <div><span className="text-amber-400">FRONT-RIGHT bumper hit</span> →  turn left   →  resume forward</div>
+              <div><span className="text-neutral-300">after N steps forward</span> →  read 9-DOF IMU heading  →  re-correct back to straight</div>
+            </div>
+
+            <Text className="text-neutral-400 mb-6">
+              That&apos;s it: two front bump switches for obstacles, and the IMU periodically pulling the
+              heading back to forward so small drift doesn&apos;t compound over a run.
+            </Text>
+
+            <div className="bg-neutral-900/50 border border-amber-900/30 p-4 rounded-lg">
+              <Mono color="amber" className="mb-2 block text-sm">// WHAT DIDN&apos;T MAKE IT IN</Mono>
+              <Text className="text-neutral-300 text-sm">
+                The IR range finders, foot contact switches, and ultrasonic sensors from the original
+                CPG-fed sensor suite design were never implemented on the competition robot — there simply
+                wasn&apos;t time. Bump switches and the IMU were the entire terrain-sensing budget on race day.
+              </Text>
             </div>
           </div>
         </section>
@@ -412,24 +465,22 @@ export default function HexapodPage() {
           <div>
             <Heading variant="h3" className="mb-6">Control Loop Budget</Heading>
             <Text className="text-neutral-400 mb-6">
-              The Arduino Mega runs at 16MHz with no FPU. Every millisecond is accounted for.
-              The 40Hz loop (25ms period) is divided across tasks in strict priority order.
+              The Arduino Mega runs at 16MHz with no FPU. This is the budget for the gait that actually
+              raced — fixed tripod gait, bump switches, and IMU heading correction — inside the 40Hz
+              (25ms) loop.
             </Text>
 
             {/* Budget bars */}
             <div className="space-y-3 mb-6">
               {[
-                { label: 'CPG step() — 11× sin()', ms: 2.5,  total: 25, color: 'bg-amber-500' },
-                { label: '6× IK solve + servo write', ms: 3.5,  total: 25, color: 'bg-amber-400' },
-                { label: 'IMU read (I²C)',            ms: 0.5,  total: 25, color: 'bg-amber-300' },
-                { label: '6× foot switch read',       ms: 0.1,  total: 25, color: 'bg-amber-200' },
-                { label: 'Ultrasonic (1× per frame)', ms: 1.0,  total: 25, color: 'bg-amber-100' },
-                { label: 'IR sensors (3× analog)',    ms: 0.3,  total: 25, color: 'bg-yellow-200' },
-                { label: 'Serial + overhead',         ms: 0.5,  total: 25, color: 'bg-neutral-600' },
-                { label: 'Headroom',                  ms: 16.6, total: 25, color: 'bg-neutral-800 border border-neutral-700' },
+                { label: 'Tripod step() + 6× IK solve', ms: 3.5,  total: 25, color: 'bg-amber-500' },
+                { label: 'Bump switch reads (2× digital)', ms: 0.1,  total: 25, color: 'bg-amber-400' },
+                { label: 'IMU read (I²C, 9-DOF)',        ms: 0.5,  total: 25, color: 'bg-amber-300' },
+                { label: 'Serial + overhead',            ms: 0.5,  total: 25, color: 'bg-neutral-600' },
+                { label: 'Headroom',                     ms: 20.4, total: 25, color: 'bg-neutral-800 border border-neutral-700' },
               ].map(({ label, ms, total, color }) => (
                 <div key={label} className="flex items-center gap-4">
-                  <div className="w-44 flex-shrink-0">
+                  <div className="w-48 flex-shrink-0">
                     <Mono className="text-neutral-300 text-sm">{label}</Mono>
                   </div>
                   <div className="flex-1 h-2 bg-neutral-900 rounded-full overflow-hidden">
@@ -444,10 +495,83 @@ export default function HexapodPage() {
             </div>
 
             <Text className="text-neutral-300 text-sm">
-              Total used: ~8.4ms of 25ms available. 16.6ms headroom reserved for sensor
-              fusion algorithms and future expansion.
+              Total used: ~4.6ms of 25ms available. Plenty of headroom left over — most of it would
+              have gone to the CPG and the extra sensors in 04__CPG, had there been time to finish them.
             </Text>
           </div>
+        </section>
+
+        {/* ── 08 COMPETITION ─────────────────────────────────── */}
+        <section className="mb-20 grid grid-cols-1 md:grid-cols-[120px_1fr] gap-8">
+          <div className="text-right hidden md:block">
+            <Mono className="text-neutral-400 block sticky top-32">08__COMPETITION</Mono>
+          </div>
+          <div className="space-y-8">
+            <div>
+              <Heading variant="h3" className="mb-4">Race Day at the Great Sand Dunes</Heading>
+              <Text className="text-neutral-400 mb-6">
+                The Colorado Space Grant Robotics Competition ran right on the dunes — as close to a
+                lunar regolith analog as Colorado gets.
+              </Text>
+              <MediaFrame
+                src={DUNES_MORNING_SRC}
+                alt="Morning view of the Great Sand Dunes in Colorado, with storm clouds rolling over the mountains behind the dune field"
+                caption="Great Sand Dunes, CO — competition morning"
+              />
+            </div>
+
+            <div>
+              <Text className="text-neutral-400 mb-4">
+                The tripod gait and bump-recovery loop got us through the first course clean.
+              </Text>
+              <MediaFrame
+                src={COURSE_RUN_SRC}
+                alt="Hexapod robot walking a lane marked with wooden course stakes on the sand dunes, leaving a trail of leg prints in the sand"
+                caption="First course — completed"
+              />
+            </div>
+
+            <div>
+              <Text className="text-neutral-400 mb-4">
+                We failed every other course. The tripod gait and bump logic that worked on the first
+                run didn&apos;t generalize to the rest of the obstacle set.
+              </Text>
+              <VideoFrame
+                videoId={FAILED_COURSES_VIDEO_ID}
+                title="Hexapod failing the remaining competition courses"
+                caption="The other courses — did not go as well"
+              />
+            </div>
+
+            <div>
+              <Text className="text-neutral-400 mb-4">
+                But it can dance. We built a dedicated dance mode, and it was worth every minute.
+              </Text>
+              <VideoFrame
+                videoId={DANCE_VIDEO_ID}
+                title="Hexapod dance mode"
+                caption="Dance mode — undefeated"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ── CREDITS ────────────────────────────────────────── */}
+        <section className="mb-20">
+          <div className="rounded-lg overflow-hidden border border-amber-900/40 mb-6 max-w-md">
+            <img
+              src={TEAM_PHOTO_SRC}
+              alt="The hexapod team at the Great Sand Dunes: Janga, Cal, Luke, and Haley, from left to right, holding the robot"
+              className="w-full h-auto"
+            />
+          </div>
+          <Mono className="text-neutral-400 mb-4 block">Team</Mono>
+          <Text className="text-neutral-300 text-sm mb-2">
+            Janga, Cal, Luke Bray, and Haley — Colorado Space Grant Robotics Competition team.
+          </Text>
+          <Text className="text-neutral-400 text-xs">
+            Frame design based on markwtech&apos;s open-source hexapod, adapted from the Trossen PhantomX.
+          </Text>
         </section>
 
         {/* ── FOOTER ─────────────────────────────────────────── */}
@@ -457,7 +581,7 @@ export default function HexapodPage() {
             {[
               'C++', 'Python', 'Embedded Systems', 'Inverse Kinematics',
               'Kuramoto Oscillators', 'Control Theory', 'Arduino Mega 2560',
-              'Fusion 360', '3D Printing', 'PLA / TPU', 'Sensor Fusion',
+              'Fusion 360', '3D Printing', 'PLA / TPU', 'Obstacle Recovery',
             ].map((tech) => (
               <Mono
                 key={tech}
