@@ -17,8 +17,11 @@ export default function EducationPage() {
     { text: "Verifying checksums for CE_338_DIGITAL_VLSI... PASS", delay: 100 },
     { text: "Checking memory integrity... 100% RETENTION", delay: 500 },
     { text: "Detecting hardware: ATMEGA2560 (CE_351), ANALOG_ELECTRONICS (ENGR_337)... FOUND", delay: 400 },
-    { text: "Compiling Major GPA stats... 3.63/4.0", delay: 600 },
-    { text: "Establishing link to FORT_LEWIS_COLLEGE_DB...", delay: 800 },
+    { text: "Compiling B.S. transcript... CUM GPA 3.50/4.0, FINAL 60 CREDITS 3.97/4.0", delay: 600 },
+    { text: "Establishing link to FORT_LEWIS_COLLEGE_DB...", delay: 500 },
+    { text: "B.S. COMPUTER_ENGINEERING... COMPLETE", delay: 300 },
+    { text: "Establishing link to UNIVERSITY_OF_ARKANSAS_DB...", delay: 500 },
+    { text: "M.S. ELECTRICAL_ENGINEERING... IN_PROGRESS", delay: 300 },
     { text: "Access granted.", delay: 200 },
     { text: "Booting ACADEMIC_OS v2.0...", delay: 1000 },
   ];
@@ -77,13 +80,35 @@ export default function EducationPage() {
       {/* MAIN CONTENT LAYER */}
       <div className={`transition-opacity duration-1000 ${isBooted ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="max-w-5xl mx-auto pt-32 pb-20">
-          
+
+          {/* Current Program */}
+          <div className="border-b-2 border-green-900 pb-8 mb-12">
+            <Mono variant="tag" color="green" className="mb-4 inline-block">IN PROGRESS // 1ST SEMESTER</Mono>
+            <Heading variant="h1" className="mb-4 text-4xl md:text-6xl">
+              M.S. Electrical Engineering
+            </Heading>
+
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+              <div>
+                <Heading variant="h3" className="text-green-400">
+                  University of Arkansas
+                </Heading>
+                <Text className="text-green-600 mt-2">Started Fall 2026</Text>
+              </div>
+            </div>
+
+            <Text className="text-neutral-400 mt-6 max-w-2xl">
+              Building on the embedded systems, signal processing, and hardware design work from my B.S., now pursuing graduate coursework in electrical engineering.
+            </Text>
+          </div>
+
           {/* Degree Header */}
           <div className="border-b-2 border-green-900 pb-8 mb-12">
+            <Mono variant="tag" color="neutral" className="mb-4 inline-block">COMPLETE</Mono>
             <Heading variant="h1" className="mb-4 text-4xl md:text-6xl">
               B.S. Computer Engineering
             </Heading>
-            
+
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
               <div>
                 <Heading variant="h3" className="text-green-400">
@@ -95,12 +120,12 @@ export default function EducationPage() {
                   <Text className="text-green-600">Minor in Mathematics</Text>
                 </div>
               </div>
-              
+
               <div className="text-right">
                 <Text className="text-xl text-white mb-2">Class of 2026</Text>
                 <div className="flex gap-2 justify-end">
-                  <Mono variant="tag" color="green">Major GPA: 3.63</Mono>
-                  <Mono variant="tag" color="neutral">Cum. GPA: 3.44</Mono>
+                  <Mono variant="tag" color="green">Final 60 Credits: 3.97</Mono>
+                  <Mono variant="tag" color="neutral">Cum. GPA: 3.50</Mono>
                 </div>
               </div>
             </div>
@@ -130,10 +155,20 @@ export default function EducationPage() {
                   title="Computer Org & Arch" 
                   desc="CPU datapath design, pipelining, cache memory hierarchies." 
                 />
-                <CourseItem 
-                  code="ENGR 337" 
-                  title="Analog Electronics" 
-                  desc="Transistor amplifiers, frequency response, operational amplifiers." 
+                <CourseItem
+                  code="ENGR 337"
+                  title="Analog Electronics"
+                  desc="Transistor amplifiers, frequency response, operational amplifiers."
+                />
+                <CourseItem
+                  code="CE 433"
+                  title="Embedded Devices"
+                  desc="Real-time embedded software, RTOS concepts, hardware/software co-design."
+                />
+                <CourseItem
+                  code="ENGR 430"
+                  title="Semiconductor Devices"
+                  desc="PN junctions, MOSFET physics, device-level circuit behavior."
                 />
               </ul>
             </div>
@@ -198,23 +233,6 @@ export default function EducationPage() {
 
           </div>
 
-          {/* Current Focus */}
-          <div className="mt-16 pt-12 border-t border-green-900/50">
-            <Heading variant="h4" className="text-green-700 mb-6">
-              Active Research & Upcoming
-            </Heading>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <ActiveCourse 
-                term="SPRING 2026 // IN PROGRESS" 
-                title="Embedded Devices (CE 433)" 
-              />
-              <ActiveCourse 
-                term="SPRING 2026 // IN PROGRESS" 
-                title="Semiconductor Devices (ENGR 430)" 
-              />
-            </div>
-          </div>
-
         </div>
       </div>
 
@@ -239,18 +257,5 @@ function CourseItem({ code, title, desc }: { code: string, title: string, desc: 
         {desc}
       </Text>
     </li>
-  );
-}
-
-function ActiveCourse({ term, title }: { term: string, title: string }) {
-  return (
-    <div className="bg-green-900/10 border border-green-900 p-4 rounded group hover:bg-green-900/20 transition-colors">
-      <Mono variant="default" color="green" className="text-[10px] mb-2 block">
-        {term}
-      </Mono>
-      <Text className="text-white font-bold group-hover:text-green-400 transition-colors">
-        {title}
-      </Text>
-    </div>
   );
 }
