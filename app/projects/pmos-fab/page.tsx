@@ -164,7 +164,7 @@ export default function PMOSFabPage() {
               over-etching later), but it&apos;s a real gap between the model and the furnace worth
               flagging rather than quietly rounding away.
             </Text>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-4">
               <MediaFrame
                 src={FURNACE_SRC}
                 alt="Viewport of the oxidation and diffusion furnace showing the thermal block alignment used for wafer insertion"
@@ -198,7 +198,7 @@ export default function PMOSFabPage() {
               resist coat, and changed our Karl Süss alignment habits to stop the wafer from shifting
               during exposure — both fixes are now baked into the standard procedure for the next class.
             </Text>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-4">
               <MediaFrame
                 src={ALIGNER_SRC}
                 alt="Karl Suss contact aligner with a UV light meter sensor placed on the chuck to measure exposure intensity"
@@ -291,7 +291,7 @@ export default function PMOSFabPage() {
               before deposition, run for <strong className="text-white">~40 minutes</strong>.
             </Text>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div className="space-y-4 mb-6">
               <MediaFrame
                 src={DENTON_PANEL_SRC}
                 alt="Denton Vacuum sputter coater DC power switch panel"
@@ -333,7 +333,7 @@ export default function PMOSFabPage() {
               electrical measurements imply.
             </Text>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div className="space-y-4 mb-6">
               <MediaFrame
                 src={COMB_PROBE_SRC}
                 alt="Microscope view of a comb test structure die being contacted by tungsten needle probes on the probe station"
@@ -350,7 +350,7 @@ export default function PMOSFabPage() {
               The HP4145B&apos;s CRT plot came through loud and clear on the diode structures — clean
               forward I-V curves that behave like the ideal diode equation predicts.
             </Text>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div className="space-y-4 mb-6">
               <div className="rounded-lg overflow-hidden border border-red-900/40 bg-black p-2">
                 <img src={IV_CURVE_1_SRC} alt="HP4145B CRT graphics plot of diode forward I-V curve" className="w-full h-auto" />
               </div>
