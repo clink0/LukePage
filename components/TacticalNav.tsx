@@ -116,6 +116,7 @@ export default function TacticalNav() {
                 {/* Center: Desktop Navigation Links */}
                 <div className="hidden md:flex items-center gap-2">
                     <ScrambleLink href="/projects" label="Projects" />
+                    <ScrambleLink href="/notes" label="Notes" />
                     <ScrambleLink href="/education" label="Education" />
                     <ScrambleLink href="https://github.com/clink0" label="GitHub" isExternal />
                     <ScrambleLink href="mailto:me@example.com" label="Contact" isExternal />
@@ -138,6 +139,7 @@ export default function TacticalNav() {
         {isOpen && (
             <div className="md:hidden border-b border-green-900/30 bg-black/95 backdrop-blur-md px-4 py-6 flex flex-col gap-4">
                 <ScrambleLink href="/projects" label="Projects" onClick={handleLinkClick} />
+                <ScrambleLink href="/notes" label="Notes" onClick={handleLinkClick} />
                 <ScrambleLink href="/education" label="Education" onClick={handleLinkClick} />
                 <ScrambleLink href="https://github.com/clink0" label="GitHub" isExternal onClick={handleLinkClick} />
                 <ScrambleLink href="mailto:me@example.com" label="Contact" isExternal onClick={handleLinkClick} />
