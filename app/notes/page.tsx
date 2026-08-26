@@ -41,9 +41,23 @@ export default function NotesIndexPage() {
             Notes
           </Heading>
           <Text variant="lead" className="max-w-2xl">
-            Transcribed, reviewed, and enriched lecture notes -- published automatically as I write them.
+            Lessons rebuilt from my handwritten class notes -- published automatically as I write them.
           </Text>
         </header>
+
+        <section className="mb-16 rounded-lg border border-cyan-900/40 bg-neutral-950/60 p-6 max-w-2xl">
+          <Mono variant="tag" color="cyan" className="mb-3 inline-block">
+            // ABOUT THIS
+          </Mono>
+          <Text className="text-neutral-300">
+            This isn&apos;t a course resource -- it&apos;s a personal pipeline: a vision
+            model transcribes each handwritten page, I review and correct the
+            transcription by hand, and a second pass rebuilds it into the
+            lesson below. It&apos;s a tool that integrates smoothly with how I
+            already take notes, meant to improve my note-taking and help the
+            material from each class actually stick.
+          </Text>
+        </section>
 
         <section className="mb-16">
           <Mono color="cyan" className="block mb-4">

@@ -4,7 +4,6 @@ import { MDXRemote } from "next-mdx-remote-client/rsc";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import NotesBackground from "@/components/notes/NotesBackground";
-import { Callout } from "@/components/notes/Callout";
 import { PlotlyFigure } from "@/components/notes/PlotlyFigure";
 import { StaticFigure } from "@/components/notes/StaticFigure";
 import { Heading, Mono, Text } from "@/components/ui/Typography";
@@ -60,22 +59,6 @@ export default async function NotePage({
           <Heading variant="h1" className="mb-4">
             {frontmatter.title}
           </Heading>
-          {(frontmatter.low_confidence_count > 0 || frontmatter.open_question_count > 0) && (
-            <div className="flex gap-3 flex-wrap mt-4">
-              {frontmatter.open_question_count > 0 && (
-                <Mono variant="tag" color="amber">
-                  {frontmatter.open_question_count} OPEN QUESTION
-                  {frontmatter.open_question_count === 1 ? "" : "S"}
-                </Mono>
-              )}
-              {frontmatter.low_confidence_count > 0 && (
-                <Mono variant="tag" color="red">
-                  {frontmatter.low_confidence_count} LOW-CONFIDENCE CALLOUT
-                  {frontmatter.low_confidence_count === 1 ? "" : "S"}
-                </Mono>
-              )}
-            </div>
-          )}
         </header>
 
         <div className="[&_h2]:text-3xl [&_h2]:font-bold [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:mt-8 [&_h3]:mb-3 [&_p]:text-xl [&_p]:text-neutral-300 [&_p]:leading-relaxed [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_blockquote]:border-l-2 [&_blockquote]:border-cyan-800 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-neutral-400">
@@ -83,7 +66,6 @@ export default async function NotePage({
             source={content}
             options={{ mdxOptions: { remarkPlugins: [remarkMath], rehypePlugins: [rehypeKatex] } }}
             components={{
-              Callout,
               PlotlyFigure: (props: { id: string; caption?: string }) => (
                 <PlotlyFigure {...props} data={getFigureJson(course, date, props.id) as never} />
               ),
