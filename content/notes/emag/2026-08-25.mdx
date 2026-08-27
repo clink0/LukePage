@@ -1,0 +1,119 @@
+---
+slug: EMAG
+date: '2026-08-25'
+title: Faraday's Law, Field Topology, and Boundary Conditions
+source_notes_path: notes/EMAG/2026-08-25_p3.md
+source_notes_hash: sha256:507feda1bb427e4e6e86c956f96068c20144e7605c1f76149006d7b46bf3a085
+enriched_at: '2026-08-27T16:41:32Z'
+model: claude-sonnet-5
+prompt_version: enrich_v2
+figures:
+- id: e1ff00ea1527bd2c745841def6ac026d9ad0c333e90123505d4ba06253214222
+  kind: matplotlib
+- id: 537e50eac9dac249e35271f483f1681407a50417298ff1c20977d501506138d0
+  kind: plotly
+open_question_count: 1
+---
+# Faraday's Law, Field Topology, and Boundary Conditions
+
+## A puzzle to start with
+
+Picture a loop of wire with a voltmeter connected across a small gap in it, sitting in a region where a magnetic field $\underline{B}$ passes through the loop and is changing in time. You want to ask: what voltage does the meter read? The instinct from circuits class is that voltage is a property of two points in space — you pick point $a$ and point $b$, and $V_{ab}$ is *the* voltage between them, full stop. But here that instinct fails, and figuring out why is the whole point of this lesson.
+
+The quantity a voltmeter actually measures is a line integral of the electric field along the path of the leads,
+
+$$\oint \underline{E} \cdot d\ell$$
+
+If $\underline{E}$ were a static, charge-sourced field, this integral around any closed path would vanish, and "voltage" would be a single well-defined function of position — you could talk about $V(a)$ and $V(b)$ and their difference without ever mentioning a path. But once $\underline{B}$ is changing with time, that's no longer true. Something is "missing" from the simple picture: a changing $\underline{B}$ field induces circulation in $\underline{E}$, and the line integral now depends on exactly which path you take through the field — i.e., how you route the voltmeter leads around the loop. Route the leads one way, get one reading; route them the other way around the same two terminals, get a different reading. Voltage stops being a single-valued function of position.
+
+The rest of this lesson builds up the machinery to see exactly why.
+
+## Maxwell's equations, written symmetrically
+
+$$\nabla \times \underline{E} = -\frac{\partial \underline{B}}{\partial t} - \underline{M}$$
+
+$$\nabla \times \underline{H} = \frac{\partial \underline{D}}{\partial t} + \underline{J}$$
+
+$$\nabla \cdot \underline{D} = \rho_e \quad\Rightarrow\quad \nabla \cdot \underline{E} = \frac{\rho_e}{\varepsilon}$$
+
+$$\nabla \cdot \underline{B} = \rho_m \quad\Rightarrow\quad \nabla \cdot \underline{H} = \frac{\rho_m}{\mu}$$
+
+with the constitutive relations
+
+$$\underline{D} = \varepsilon \underline{E}, \qquad \underline{B} = \mu \underline{H}$$
+
+$\underline{J}$ is electric current density, the source term on the right of Ampère's law. $\underline{M}$ is its dual — a fictitious *magnetic* current density — and $\rho_m$ is fictitious magnetic charge density. Physically, $\rho_m = 0$ and $\underline{M} = 0$: nobody has ever found an isolated magnetic charge, so $\nabla \cdot \underline{B} = 0$ always holds in the real world. These terms are carried around anyway because the symmetry is useful — in antenna problems you routinely replace a real current distribution with an *equivalent* fictitious magnetic current to simplify a calculation, so it's worth keeping $\underline{M}$ and $\rho_m$ in the general equations even though they vanish for real sources.
+
+The equation that matters most for the puzzle above is the first one, Faraday's law: a time-varying $\underline{B}$ produces a curling $\underline{E}$.
+
+## Two kinds of field lines: closed loops and open lines
+
+Every vector field you'll draw field lines for falls into one of two topological types, and each type has its own natural mathematical description.
+
+**Open field lines** start on one kind of charge and end on the opposite kind — think of the field between a positive and a negative charge, field lines flowing out of the $+$ and curving around into the $-$. These field lines have endpoints. The natural tool for describing them is *divergence*: $\nabla \cdot \underline{E} = \rho_e/\varepsilon$ tells you exactly where field lines are born (positive $\rho_e$) and where they die (negative $\rho_e$). For this kind of field, $\nabla \times \underline{E} = 0$ — there's no circulation, only flow from source to sink.
+
+**Closed field lines** never start or end anywhere; they form loops that close on themselves. The field radiated by an antenna looks like this: the $\underline{E}$ field lines form closed rings that detach from the antenna and propagate outward, not tied to any charge sitting at their "ends" because they don't have ends. For this kind of field, $\nabla \cdot \underline{E} = 0$ (no sources or sinks anywhere), and the field is described instead by its curl, $\nabla \times \underline{E} \ne 0$.
+
+This is why the general electric field is best thought of as a sum of two pieces,
+
+$$\underline{E} = \underline{E}_{\text{closed}} + \underline{E}_{\text{open}}$$
+
+The open piece is sourced by charge, via $\nabla \cdot \underline{E} = \rho_e/\varepsilon$, and is curl-free. The closed piece is sourced by a changing $\underline{B}$, via $\nabla \times \underline{E} = -\partial \underline{B}/\partial t$, and is divergence-free. These two descriptions don't compete with each other; they're just the right tool for the right topology. This split is guaranteed to work by a basic vector identity: if a field is written as the curl of some potential, $\underline{B} = \nabla \times \underline{A}$, then automatically
+
+$$\nabla \cdot (\nabla \times \underline{A}) = 0$$
+
+A field built from a curl can never have a net divergence. That's the mathematical reason $\nabla \cdot \underline{B} = 0$ holds identically once you write $\underline{B}$ in terms of a vector potential — divergence and curl really do describe two structurally different kinds of field.
+
+<StaticFigure id="e1ff00ea1527bd2c745841def6ac026d9ad0c333e90123505d4ba06253214222" />
+
+## Why voltage is single-valued only in electrostatics
+
+Go back to $\oint \underline{E} \cdot d\ell$ around a closed loop. By Stokes' theorem this closed-loop integral equals the surface integral of the curl over any surface bounded by the loop:
+
+$$\oint \underline{E} \cdot d\ell = \iint (\nabla \times \underline{E}) \cdot d\underline{s}$$
+
+In electrostatics, $\underline{B}$ doesn't change with time, so $\nabla \times \underline{E} = 0$ everywhere, and the closed loop integral is zero — always, for any loop, regardless of its shape. That's exactly what it means for voltage to be a single-valued function of position: $\int_a^b \underline{E}\cdot d\ell$ gives the same number no matter which path from $a$ to $b$ you choose, because any two paths between the same endpoints form a closed loop when you traverse one forward and the other backward, and the integral around that closed loop is zero.
+
+This holds even when $\underline{E}$ is not uniform in space. Take a parallel-plate capacitor where fringing fields make the field genuinely position-dependent — $\partial E_x/\partial y \ne 0$ somewhere near the edges. Two different paths through the field, say one that stays deep between the plates at spacing $d$ and another that swings out near the edge at effective spacing $b$, will in general pick up different values of $\int \underline{E}\cdot d\ell$ *if you stop partway*. But if you close the loop — go from $a$ to $b$ one way and back the other — the total is still zero, because curl $\underline{E}$ is still zero everywhere in the electrostatic case. Non-uniform is not the same thing as non-conservative. Voltage between two fixed points comes out the same regardless of path, as long as nothing is time-varying.
+
+Now bring back the induced field. Once $\underline{B}$ is changing, $\nabla \times \underline{E} = -\partial \underline{B}/\partial t \ne 0$, and
+
+$$\oint \underline{E} \cdot d\ell = -\frac{d}{dt}\iint \underline{B}\cdot d\underline{s} = -\frac{d\Phi_B}{dt} \ne 0$$
+
+The closed-loop integral no longer vanishes — it equals minus the rate of change of flux through whatever surface the loop bounds. This is precisely why the voltmeter-and-loop setup from the beginning doesn't have a well-defined answer independent of path: the leads of the meter, together with the wire loop, enclose some area, and the flux through that enclosed area is exactly what the meter is reporting. Reroute the leads to enclose a different amount of that changing flux, and you get a different reading, even though you never moved the two measurement points. "Voltage" as a path-independent scalar function of position is a purely electrostatic concept; it stops making unambiguous sense the moment $\partial \underline{B}/\partial t \ne 0$.
+
+## Solving for a field: charges plus boundary conditions
+
+To actually solve a field problem you need two ingredients together:
+
+$$\left.\begin{array}{l}\text{charge distribution}\\ \text{boundary conditions}\end{array}\right\} \;\Rightarrow\; \text{the field}$$
+
+The charge distribution tells you the sources (via $\nabla\cdot\underline{D} = \rho_e$); the boundary conditions tell you how the field behaves at interfaces between different materials, which is what actually pins down the constants left over from integrating the source equations.
+
+The simplest example: a point charge $Q$ surrounded by a uniform medium. Gauss's law for $\underline{D}$ integrated over a sphere of radius $r$ centered on $Q$ gives
+
+$$D = \frac{Q}{4\pi r^2}, \qquad \underline{E} = \frac{Q}{4\pi\varepsilon r^2}\,\hat{u}_r$$
+
+If the charge is surrounded by *concentric spherical shells* of different permittivities, this still works shell by shell — spherical symmetry is preserved at every radius, so $D = Q/4\pi r^2$ holds in every shell, and you just switch to the local $\varepsilon$ of whatever shell you're in to get $E = D/\varepsilon$ there.
+
+That trick breaks the moment the symmetry breaks. If instead of concentric shells you have, say, a flat slab of dielectric $\varepsilon$ sandwiched between two regions of $\varepsilon_0$, with the point charge sitting off to one side, the field is no longer spherically symmetric at all. You cannot just write $D = Q/4\pi r^2$ in the middle region — that formula was only ever valid because of the spherical symmetry of the shell geometry, and a flat slab doesn't share that symmetry. In that geometry $D = \varepsilon E$ and $E = D/\varepsilon$ are still true relations *locally*, but they're not enough by themselves to solve the problem — you need the actual boundary conditions at each flat interface to match the field correctly across it.
+
+## Boundary conditions from a Gaussian pillbox
+
+To find what happens to $\underline{D}$ right at an interface between two media, apply Gauss's law to a small pillbox straddling the boundary — a short cylinder with one flat face of area $\Delta s$ sitting in medium 2 and the opposite face of the same area sitting in medium 1, connected by a side wall of height $\Delta\ell$.
+
+<PlotlyFigure id="537e50eac9dac249e35271f483f1681407a50417298ff1c20977d501506138d0" />
+
+Gauss's law for $\underline{D}$ says the total outward flux through any closed surface equals the free charge enclosed:
+
+$$\oiint \underline{D}\cdot d\underline{s} = \iiint \rho_e\, dv$$
+
+Apply this to the pillbox. The flux through the top face (in medium 2) is $D_2 \cdot \hat{n}\,\Delta s$ where $\hat n$ points from medium 1 into medium 2. The flux through the bottom face (in medium 1) is $-D_1\cdot\hat n\,\Delta s$ (outward normal there points the other way). Now shrink the pillbox's height, $\Delta \ell \to 0$: the side-wall area shrinks to zero, so the side wall contributes nothing to the flux no matter how big $D$ is there. What remains is
+
+$$D_2\cdot\hat n\,\Delta s - D_1\cdot\hat n\,\Delta s = \iiint \rho_e\, dv$$
+
+On the right, shrinking $\Delta\ell \to 0$ also kills the *volume* charge contribution (a vanishing volume holds no net volume charge), unless there's charge crammed onto the interface itself as a genuine surface charge density $\rho_{es}$ (charge per unit area). In that case the right-hand side survives as $\rho_{es}\,\Delta s$. Dividing through by $\Delta s$:
+
+$$\hat n \cdot (\underline{D}_2 - \underline{D}_1) = \rho_{es}$$
+
+This is the boundary condition: the normal component of $\underline{D}$ jumps across an interface by exactly the free surface charge density sitting there. If there's no free charge glued to the interface, $\hat n \cdot \underline{D}_2 = \hat n \cdot \underline{D}_1$ — the normal component of $\underline{D}$ is continuous. It's the presence of real, physical surface charge that forces $\underline{D}$ to jump. This is exactly the piece of information that $D = \varepsilon E$ alone can't give you: the constitutive relation tells you how $D$ and $E$ relate *within* a medium, but only the pillbox argument tells you how they're allowed to change *across* the boundary between two media.
