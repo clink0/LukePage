@@ -14,8 +14,6 @@ export interface NoteFrontmatter {
   model: string;
   prompt_version: string;
   figures: { id: string; kind: "plotly" | "matplotlib" }[];
-  low_confidence_count: number;
-  medium_confidence_count: number;
   open_question_count: number;
 }
 
