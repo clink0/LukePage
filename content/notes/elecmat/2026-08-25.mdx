@@ -1,0 +1,102 @@
+---
+slug: ELECMAT
+date: '2026-08-25'
+title: "Electronic Materials \u2014 Atoms, Electron Structure, and Bonding"
+source_notes_path: notes/ELECMAT/2026-08-25_p0.md
+source_notes_hash: sha256:77f79be53578fb387e2bcc30a5555c569717ee05cfc390cf354767a92c8bd5be
+enriched_at: '2026-08-26T02:52:46Z'
+model: claude-sonnet-5
+prompt_version: enrich_v2
+figures:
+- id: 857e7aca179a29620bca5a3d651f5cc64395adfafe86f7bcaeaff77004ade7b7
+  kind: matplotlib
+- id: b1c5c194db34827672410784e9d35c703007ba1bb7678d584eb5db210880096c
+  kind: matplotlib
+open_question_count: 1
+---
+# Electronic Materials — Atoms, Electron Structure, and Bonding
+
+## Why start here
+
+Every property a material has — how it conducts, how stiff it is, how it responds to light — traces back to two things: what atoms it's made of, and how those atoms are held together. So before anything else, we need a working picture of the atom and a way to describe how two atoms interact when you bring them close together.
+
+## The atom, briefly
+
+An atom is a positively charged nucleus (protons and neutrons) surrounded by a cloud of negative electrons. Quantum mechanics tells us this cloud isn't a random fog — the electrons live in discrete "shells" around the nucleus, and each shell corresponds to a distinct energy.
+
+Take neon (Ne) as an example. Its ten electrons don't spread out evenly; they organize into two shells. The innermost shell is called the **K shell** ($n=1$), and it holds the $1s$ electrons. The next shell out is the **L shell** ($n=2$), holding the $2s$ and $2p$ electrons. Each shell sits at higher energy the farther it is from the nucleus.
+
+## Quantum numbers: the electron's address
+
+To specify exactly which electron you're talking about, you need four numbers. No two electrons in an atom share the same full set — this is what forces electrons to stack up into shells and subshells rather than all piling into the lowest state.
+
+**$n$ — principal quantum number.** This is the shell index: $n = 1, 2, 3, \dots$, corresponding to letters $K, L, M, N, \dots$. It's the dominant factor controlling an electron's energy — bigger $n$ means farther from the nucleus and (generally) higher energy.
+
+**$l$ — angular momentum quantum number.** Within a shell, electrons split further into subshells labeled $s, p, d, f, \dots$, corresponding to $l = 0, 1, 2, 3, \dots$. For a given $n$, $l$ can only run from $0$ up to $n-1$. That's why the $K$ shell ($n=1$) only has an $s$ subshell, while the $L$ shell ($n=2$) has both $s$ and $p$.
+
+**$m_l$ — magnetic quantum number.** This tells you the orientation of a given orbital in space. For a subshell with angular momentum $l$, $m_l$ ranges over $-l, -l+1, \dots, 0, \dots, +l$ — that's $2l+1$ possible orientations. It's the projection of $l$ along some axis.
+
+**$m_s$ — spin projection.** Electrons carry an intrinsic spin of $\tfrac{1}{2}$, and its projection can only take two values: $m_s = -\tfrac{1}{2}$ or $+\tfrac{1}{2}$. More generally, a particle of spin $s$ has projections running from $-s$ to $+s$ in integer steps.
+
+Put together, $\{n, l, m_l, m_s\}$ uniquely labels every electron in an atom. This is exactly what limits how many electrons fit in each shell: the $K$ shell ($n=1$) holds only 2 electrons (both in $1s$, spin up and spin down), while the $L$ shell ($n=2$) holds up to 8 (2 in $2s$, 6 in $2p$, since $2p$ has three orbitals $m_l = -1,0,1$, each holding 2 spins).
+
+## Electron configurations
+
+An element's chemistry is dominated by its **outermost, highest-energy electrons** — these are the ones exposed to the outside world and available for bonding.
+
+Neon, with 10 electrons, fills the first two shells completely:
+$$\text{Ne} = 1s^2\,2s^2\,2p^6$$
+The superscripts just tell you how many electrons occupy each subshell — they say nothing about individual spins, only populations.
+
+Aluminum has 13 electrons. It fills up through neon's configuration and then adds three more:
+$$\text{Al} = 1s^2\,2s^2\,2p^6\,3s^2\,3p^1 = [\text{Ne}]\,3s^2\,3p^1$$
+Writing $[\text{Ne}]$ is shorthand for "all of neon's filled shells" — it lets you focus on the valence electrons, which are the ones that actually matter for bonding.
+
+Titanium is where things get less obvious. You might expect the $3d$ subshell to fill before $4s$, since $3d$ has a smaller principal quantum number. But energetically, $4s$ actually sits *lower* than $3d$ once you get to this part of the periodic table. So titanium's 22 electrons fill $4s$ before $3d$ finishes:
+$$\text{Ti} = 1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,3d^2\,4s^2 = [\text{Ar}]\,3d^2\,4s^2$$
+Notice $3d$ is left with only 2 electrons (out of a possible 10) while $4s$ is already full — the shells fill in order of *energy*, not in order of $n$.
+
+## Bonding: why atoms stick together
+
+Now consider two atoms brought close together. Each has a positive nucleus and a surrounding electron cloud. Two things happen at once:
+
+- The electron clouds repel each other (like charges repel), and the nuclei repel each other too. This gives a **repulsive force**, $F_R$.
+- Each atom's electrons are attracted to the other atom's nucleus. This gives an **attractive force**, $F_A$.
+
+The net force on each atom is the sum of these:
+$$F_{Net} = F_R + F_A$$
+
+At very large separation, both forces are essentially zero — the atoms don't feel each other. As you push the atoms together, the attractive force turns on first and dominates at moderate range, pulling the atoms in. But the repulsive force grows *much* more steeply as the atoms get very close, because now the electron clouds are directly overlapping. 
+
+There's a special separation, $r_o$, where these two effects exactly cancel:
+$$F_{Net}(r_o) = 0 \quad \Longleftrightarrow \quad F_A(r_o) = -F_R(r_o)$$
+
+This is the **natural atomic spacing** — the distance the atoms settle into if left alone. Push them closer and the repulsive force shoves them back out; pull them apart and the attractive force pulls them back in. $r_o$ is a stable equilibrium.
+
+<StaticFigure id="857e7aca179a29620bca5a3d651f5cc64395adfafe86f7bcaeaff77004ade7b7" />
+
+## From force to potential energy
+
+Force and potential energy are related by
+$$F = -\frac{dE}{dr}$$
+(the minus sign is a convention: force points toward decreasing energy). Equivalently, energy is minus the work done as you assemble the system:
+$$E = \Delta W = \int \vec{F}\cdot d\vec{r}$$
+
+Just like the force splits into repulsive and attractive pieces, so does the energy:
+$$E = E_A + E_R$$
+
+Since $F = -dE/dr$, a repulsive force ($F_R > 0$, pushing atoms apart) corresponds to an energy $E_R$ that *rises steeply* as $r$ decreases. An attractive force ($F_A < 0$, pulling atoms together) corresponds to an energy $E_A$ that becomes *more negative* as the atoms approach, then flattens toward zero at large $r$.
+
+Adding these two curves gives $E_{Net}(r)$, which is not monotonic — it has a minimum. That minimum is exactly the equilibrium point we already found from forces, because
+$$\frac{dE}{dr}\bigg|_{r_o} = 0 \quad \Longleftrightarrow \quad F_{Net}(r_o) = 0$$
+
+The force being zero is precisely the statement that the energy curve is flat there — a minimum. The depth of that minimum, $E_o$, is the **bond energy**: how much energy you'd need to supply to pull the two atoms completely apart. The location of the minimum, $r_o$, is the same natural spacing as before.
+
+<StaticFigure id="b1c5c194db34827672410784e9d35c703007ba1bb7678d584eb5db210880096c" />
+
+## Generalizing to real solids
+
+This two-atom picture extends directly to a solid made of many atoms. Every atom in the solid sits at an equilibrium spacing $r_o$ from its neighbors, set by the same condition:
+$$\frac{dE}{dr}\bigg|_{r_o} = 0$$
+
+and each bond contributes a bonding energy $E_o$. These two numbers — the interatomic spacing $r_o$ and the bond energy $E_o$ — are the starting point for almost everything that follows: they set the size of the unit cell, the stiffness of the material, and how much energy it takes to melt or break it apart.

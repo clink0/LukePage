@@ -1,0 +1,102 @@
+---
+slug: SEMI
+date: '2026-08-25'
+title: Particle in a Box, Atomic Shells, and the Birth of Energy Bands
+source_notes_path: notes/SEMI/2026-08-25_p2.md
+source_notes_hash: sha256:2bf1ab56dcd6ccb918d374e2b84ee6cf382597ced2048addf1e2611a9f50d14a
+enriched_at: '2026-08-27T16:44:32Z'
+model: claude-sonnet-5
+prompt_version: enrich_v2
+figures:
+- id: 8662230c85b16d616af359ca3eeb8e954f7b7f48a55b4353ea45f7995757764e
+  kind: matplotlib
+- id: 8d5b427bd7653cf1bddc88761a6e95476680e498da73e2a4edb18c1d5f054842
+  kind: plotly
+- id: 1bb32294c114669e211be1a81b5d4221d93c0e8edc61c87bc1f230bdf735bd73
+  kind: matplotlib
+open_question_count: 2
+---
+# Particle in a Box, Atomic Shells, and the Birth of Energy Bands
+
+This lesson connects three ideas that look separate but build on each other: confining an electron in a box, counting how many electrons fit into each atomic shell, and what happens once you don't confine electrons in one box but line up a whole periodic row of them — a crystal. The last piece is where band structure comes from.
+
+## The particle in a box
+
+Start with an electron confined to a 1D region of width $L$, with infinite walls at $x=0$ and $x=L$. Inside the box the potential is zero, so the time-independent Schrödinger equation is
+
+$$-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} = E\psi.$$
+
+The general solution is a mix of sine and cosine,
+
+$$\psi(x) = A\sin(kx) + B\cos(kx), \qquad k = \frac{\sqrt{2mE}}{\hbar}.$$
+
+The walls force $\psi=0$ at $x=0$ and $x=L$, since the electron can never be found outside the box. Plugging in $x=0$ kills the cosine term ($B=0$). Plugging in $x=L$ requires
+
+$$\sin(kL) = 0 \implies k_n = \frac{n\pi}{L}, \quad n = 1,2,3,\dots$$
+
+So only discrete wavevectors — and therefore discrete energies — are allowed:
+
+$$E_n = \frac{\hbar^2 k_n^2}{2m} = \frac{n^2\pi^2\hbar^2}{2mL^2}, \qquad \psi_n(x) = \sqrt{\frac{2}{L}}\sin\!\left(\frac{n\pi x}{L}\right).$$
+
+The shapes follow directly from this formula. $\psi_1$ is a single smooth arch — half of a sine wave, no interior nodes. $\psi_2$ has one node in the middle, so it looks like an S-shaped wiggle: a hump up, then a hump down. $\psi_3$ has two interior nodes, giving three lobes that alternate sign.
+
+Squaring gives the probability density $|\psi_n(x)|^2$, and squaring erases the sign information — every lobe becomes a positive-valued bump. That's why $|\psi_1|^2$ is one bump, $|\psi_2|^2$ is two bumps, and $|\psi_3|^2$ is three bumps of similar height, all sitting between the same two walls. The number of bumps in $|\psi_n|^2$ always equals $n$; the number of nodes in $\psi_n$ always equals $n-1$. This is the general rule for any bound state: higher energy means more nodes, more oscillation, more localized probability lobes.
+
+<StaticFigure id="8662230c85b16d616af359ca3eeb8e954f7b7f48a55b4353ea45f7995757764e" />
+
+## Quantum numbers and how many states each shell holds
+
+For an electron bound in three dimensions (like in an atom), the orbital angular momentum quantum number $\ell$ labels the shape of the state, and for each $\ell$ there are $2\ell+1$ orientations (magnetic quantum number $m_\ell$), each of which holds 2 electrons once you include spin. So the number of states in a subshell is $2(2\ell+1)$:
+
+- $s$: $\ell = 0 \to 2$ states
+- $p$: $\ell = 1 \to 6$ states
+- $d$: $\ell = 2 \to 10$ states
+- $f$: $\ell = 3 \to 14$ states
+
+This counting matters later: it's the same logic — count the distinct standing-wave states, then fill them two electrons at a time — that you use to fill up energy levels in a solid. The particle in a box gave you the idea of discrete quantized levels; this gives you the bookkeeping for how many electrons occupy each one before you're forced into the next level up.
+
+## Free electron gas: why $k$-space needs three dimensions
+
+Now put many free electrons in a 3D box of volume $V = L_x L_y L_z$ instead of a 1D line. The same boundary-condition logic applies in each direction independently, so the wavefunction separates and each direction gets its own quantum number:
+
+$$k_x = \frac{n_x\pi}{L_x}, \quad k_y = \frac{n_y\pi}{L_y}, \quad k_z = \frac{n_z\pi}{L_z}, \qquad n_x,n_y,n_z = 1,2,3,\dots$$
+
+$$E = \frac{\hbar^2}{2m}\left(k_x^2+k_y^2+k_z^2\right).$$
+
+It's tempting to think $k$ is just "the wavelength," since $k = 2\pi/\lambda$ in 1D — so why would you need three of them? The resolution is that $k$ is really a vector, $\vec{k} = (k_x,k_y,k_z)$. Its magnitude sets the wavelength, but its direction sets which way the wave is traveling. A plane wave in 3D can propagate along any direction, not just left or right, so you need all three components to fully specify the state. Each allowed triplet $(k_x,k_y,k_z)$ is a single point sitting in an abstract 3D space — $k$-space — and as you add more electrons to the box, you fill up more and more of these points, starting from the origin outward, because lower $|\vec{k}|$ means lower energy.
+
+At absolute zero, filling points from the center outward and stopping once you've placed all the electrons produces a filled sphere in $k$-space, bounded by the Fermi wavevector $k_F$. Everything inside the sphere is occupied, everything outside is empty.
+
+<PlotlyFigure id="8d5b427bd7653cf1bddc88761a6e95476680e498da73e2a4edb18c1d5f054842" />
+
+## From a free electron to an electron in a crystal
+
+Free electrons only feel a flat, zero potential. A real electron in a crystal feels the periodic pull of the ion cores, repeating every lattice spacing. The Kronig-Penney model captures this with the simplest periodic potential possible: alternating flat wells and flat barriers, period $(a+d)$ — a well of width $a$ where $V=0$, followed by a barrier of width $d$ where $V=V_0$.
+
+Because the potential is periodic, Bloch's theorem says the solution can't just be any wavefunction — it has to satisfy
+
+$$\psi(x + a+d) = e^{ik(a+d)}\psi(x),$$
+
+where $k$ is the Bloch wavevector, the crystal analog of the free-electron $k$. Inside a well, the electron behaves like a free particle with
+
+$$\alpha = \frac{\sqrt{2mE}}{\hbar}, \qquad \psi(x) = Ae^{i\alpha x} + Be^{-i\alpha x}.$$
+
+Inside a barrier, if $E<V_0$, the wavefunction decays/grows exponentially with
+
+$$\beta = \frac{\sqrt{2m(V_0-E)}}{\hbar}, \qquad \psi(x) = Ce^{\beta x} + De^{-\beta x}.$$
+
+Matching $\psi$ and $\psi'$ at each interface, and using the Bloch condition to relate the well region to the barrier region one period over, gives four linear equations in $A,B,C,D$. A nontrivial solution exists only if a certain determinant vanishes. Taking the standard limit of thin, tall barriers (barrier width $d\to 0$, height $V_0\to\infty$, with the product $P = \dfrac{mV_0 a d}{\hbar^2}$ held fixed as a measure of barrier strength) collapses that determinant condition down to the compact form:
+
+$$\cos[k(a+d)] = P\,\frac{\sin(\alpha a)}{\alpha a} + \cos(\alpha a).$$
+
+## Why gaps in energy appear
+
+This equation is the whole story. The left-hand side, $\cos[k(a+d)]$, can only ever take values between $-1$ and $1$, because it's a cosine of a real number. The right-hand side depends only on the energy $E$ (through $\alpha = \sqrt{2mE}/\hbar$) and the barrier strength $P$ — it has nothing to do with $k$.
+
+So pick an energy $E$, compute the right-hand side. If it lands between $-1$ and $1$, you can find a real $k$ that solves the equation — this energy is *allowed*, and the electron can exist as a propagating Bloch wave with that $k$. If the right-hand side falls outside $[-1,1]$, there is no real $k$ that works. The only way to formally satisfy the equation is for $k$ to become complex, which means the wave doesn't propagate — it decays. That energy is *forbidden*. This is exactly what "some $E$ will not equal $\alpha k$" is pointing at: not every energy corresponds to a valid propagating state in the crystal, only the ones where the right-hand side stays bounded.
+
+Sweeping $E$ continuously, the right-hand side oscillates in and out of the $[-1,1]$ window, carving energy into an alternating sequence of allowed bands and forbidden gaps.
+
+<StaticFigure id="1bb32294c114669e211be1a81b5d4221d93c0e8edc61c87bc1f230bdf735bd73" />
+
+At low energy, near $\alpha a \to 0$, the right-hand side stays close to $\cos[k(a+d)]$'s free-particle behavior, so the lowest band looks almost like the ordinary free-electron parabola $E = \hbar^2k^2/2m$. As $E$ grows, the periodic potential increasingly distorts this, and gaps open up at the points where the right-hand side crosses outside $[-1,1]$. Each allowed band, once you sort them by energy, plays the same role that $n=1,2,3,\dots$ played for the particle in a box: a band index labeling successive groups of allowed energies, separated now not by simple quantization but by genuine forbidden gaps carved out by the crystal's periodicity.
