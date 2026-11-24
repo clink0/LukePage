@@ -1,20 +1,32 @@
 'use client';
 
-import GameOfLifeBackground from "@/components/GameOfLifeBackground";
+import SmithSphereBackground, { REVEAL_SCROLL_VH } from "@/components/SmithSphereBackground";
 import TacticalNav from "@/components/TacticalNav";
 
 export default function Home() {
   return (
-    <main className="fixed inset-0 w-full h-full bg-black overflow-hidden selection:bg-green-500/30">
-      
-      {/* 1. The Background Layer */}
-      <GameOfLifeBackground />
+    // Every layer is fixed; the page height only exists so scrolling can drive
+    // the zoom-out reveal (see --reveal, set by SmithSphereBackground).
+    <main
+      className="relative w-full bg-black selection:bg-green-500/30"
+      style={{ height: `${(1 + REVEAL_SCROLL_VH) * 100}vh` }}
+    >
+
+      {/* 1. The Background Layer (3D Smith chart; type "life" for the easter egg) */}
+      <SmithSphereBackground />
 
       {/* 2. The New Header Layer */}
       <TacticalNav />
 
-      {/* 3. The Hero Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-40">
+      {/* 3. The Hero Content: fades, grows and blurs away as you scroll */}
+      <div
+        className="fixed inset-0 flex flex-col items-center justify-center pointer-events-none z-40"
+        style={{
+          opacity: "clamp(0, calc(1 - var(--reveal, 0) / 0.4), 1)",
+          transform: "scale(calc(1 + var(--reveal, 0) * 0.25))",
+          filter: "blur(calc(var(--reveal, 0) * 14px))",
+        }}
+      >
         
         {/* Added a subtle "Targeting Box" effect around the name */}
         <div className="relative p-12 border border-green-900/30 bg-black/20 backdrop-blur-[2px]">
