@@ -1,10 +1,9 @@
 'use client';
 
 import * as THREE from 'three';
-import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type RefObject } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Line, OrbitControls } from '@react-three/drei';
-import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import {
   cotHalf,
   parseTouchstone,
@@ -375,12 +374,31 @@ export const REVEAL_SCROLL_VH = 1.5;
 
 const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-function CameraRig({ reveal }: { reveal: RefObject<number> }) {
+// Same rate as OrbitControls' autoRotateSpeed = 0.35 (rad/s).
+const AUTO_SPIN = ((2 * Math.PI) / 60) * 0.35;
+const Y_AXIS = new THREE.Vector3(0, 1, 0);
+
+/**
+ * Scroll-driven zoom. With `spin`, also auto-rotates the camera itself;
+ * used on touch screens, where OrbitControls is left out entirely.
+ */
+function CameraRig({ reveal, spin }: { reveal: RefObject<number>; spin: boolean }) {
   const smooth = useRef(reveal.current ?? 0);
 
-  useFrame(({ camera, scene }, delta) => {
+  useFrame(({ camera, scene, size }, delta) => {
+    if (spin) {
+      camera.position.applyAxisAngle(Y_AXIS, AUTO_SPIN * delta);
+      camera.lookAt(0, 0, 0);
+    }
+    // On narrow (portrait) screens back off further so the sphere fits the width.
+    let far = ZOOM_FAR;
+    if (camera instanceof THREE.PerspectiveCamera) {
+      const halfV = THREE.MathUtils.degToRad(camera.fov / 2);
+      const halfH = Math.atan(Math.tan(halfV) * (size.width / size.height));
+      far = Math.max(ZOOM_FAR, 1.12 / Math.sin(halfH));
+    }
     smooth.current += ((reveal.current ?? 0) - smooth.current) * Math.min(1, delta * 6);
-    const dist = ZOOM_NEAR + (ZOOM_FAR - ZOOM_NEAR) * easeInOutCubic(smooth.current);
+    const dist = ZOOM_NEAR + (far - ZOOM_NEAR) * easeInOutCubic(smooth.current);
     camera.position.setLength(dist);
     if (scene.fog instanceof THREE.Fog) {
       scene.fog.near = Math.max(0.05, dist - 0.9);
@@ -393,6 +411,20 @@ function CameraRig({ reveal }: { reveal: RefObject<number> }) {
 /* ------------------------------------------------------------------ */
 /* Scene + HUD                                                         */
 /* ------------------------------------------------------------------ */
+
+/** True on touch-first devices (phones, tablets). False during SSR. */
+const COARSE_POINTER = '(pointer: coarse)';
+function useIsTouch() {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia(COARSE_POINTER);
+      mq.addEventListener('change', onChange);
+      return () => mq.removeEventListener('change', onChange);
+    },
+    () => window.matchMedia(COARSE_POINTER).matches,
+    () => false,
+  );
+}
 
 function buildTraces(text: string): Trace[] {
   const ts = parseTouchstone(text, 2);
@@ -408,7 +440,7 @@ export default function SmithSphereBackground() {
   const [life, setLife] = useState(false);
   const hudRef = useRef<HTMLPreElement>(null);
   const reveal = useRef(0);
-  const controlsRef = useRef<OrbitControlsImpl>(null);
+  const isTouch = useIsTouch();
 
   // Scroll position -> reveal in [0, 1]. Exposed to CSS as --reveal so the
   // page's banner and this HUD can fade without React re-renders.
@@ -427,14 +459,6 @@ export default function SmithSphereBackground() {
       window.removeEventListener('resize', onScroll);
       root.style.removeProperty('--reveal');
     };
-  }, []);
-
-  // On touch screens a one-finger drag should scroll the page, not spin the sphere.
-  useEffect(() => {
-    const controls = controlsRef.current;
-    if (!controls || !window.matchMedia('(pointer: coarse)').matches) return;
-    controls.enableRotate = false;
-    controls.domElement?.style.setProperty('touch-action', 'pan-y');
   }, []);
 
   useEffect(() => {
@@ -467,7 +491,8 @@ export default function SmithSphereBackground() {
 
   return (
     <>
-      <div className="fixed inset-0 z-0">
+      {/* On touch screens the sphere ignores touches so swipes scroll the page. */}
+      <div className={`fixed inset-0 z-0 ${isTouch ? 'pointer-events-none' : ''}`}>
         <Canvas camera={{ position: [3.4, 0.7, 2.0], fov: 35 }} dpr={[1, 2]}>
           <color attach="background" args={['#000000']} />
           <fog attach="fog" args={['#000000', 3.1, 6.6]} />
@@ -476,16 +501,19 @@ export default function SmithSphereBackground() {
             {traces && <Traces traces={traces} hudRef={hudRef} />}
             <LifeLayer active={life} />
           </group>
-          <CameraRig reveal={reveal} />
-          <OrbitControls
-            ref={controlsRef}
-            enableZoom={false}
-            enablePan={false}
-            enableDamping
-            autoRotate
-            autoRotateSpeed={0.35}
-            rotateSpeed={0.5}
-          />
+          <CameraRig reveal={reveal} spin={isTouch} />
+          {/* Drag-to-rotate on mouse/trackpad only. OrbitControls sets
+              touch-action: none on the canvas, which would block touch scrolling. */}
+          {!isTouch && (
+            <OrbitControls
+              enableZoom={false}
+              enablePan={false}
+              enableDamping
+              autoRotate
+              autoRotateSpeed={0.35}
+              rotateSpeed={0.5}
+            />
+          )}
         </Canvas>
       </div>
 
